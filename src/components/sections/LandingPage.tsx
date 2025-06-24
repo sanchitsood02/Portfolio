@@ -1,10 +1,16 @@
 "use client";
-import { animate, motion, useMotionValue, useSpring } from "framer-motion";
-import React, { useRef } from "react";
+
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import React, { useRef, useState } from "react";
 import Navbar from "../common/Navbar";
-import Eye from "../Eye";
+import Eye from "../animations/Eye";
 import Image from "next/image";
-import CircularText from "../CircularText";
+import RotatingText from "../animations/RotatingText";
+import myPic from "../../assets/images/MyPic.jpg";
+import charminar from "../../assets/images/Charminar.jpg";
+import Lottie from "lottie-react";
+import wavingHand from "../../assets/animations/handWave.json";
+import { colors } from "@/src/lib/colors";
 
 const LandingPage = () => {
   const rotateX = useMotionValue(0);
@@ -19,8 +25,8 @@ const LandingPage = () => {
 
   const cardRef = useRef(null);
 
-  const handleMouseMove = (e: MouseEvent) => {
-    const card = cardRef.current;
+  const handleMouseMove = (e: any) => {
+    const card = cardRef.current as any;
     const rect = card.getBoundingClientRect();
 
     const x = e.clientX - rect.left;
@@ -48,34 +54,21 @@ const LandingPage = () => {
 
   return (
     <div
-      className="App"
-      style={{
-        height: "100vh",
-        overflow: "hidden",
-        position: "relative",
-        perspective: "1000px",
-      }}
+      className="App antialiased h-screen overflow-hidden relative perspective-distant"
       aria-label="Landing page main container"
     >
-      <Navbar />
       <motion.div
         ref={cardRef}
         initial={{ y: "100vh" }}
         animate={{ y: 0 }}
         style={{
-          width: "90vw",
-          height: "80vh",
           backgroundColor: "#3D90D7",
-          position: "absolute",
-          top: "10vh",
-          left: "5vw",
           borderRadius: "30px",
-          cursor: "pointer",
-          overflow: "hidden",
           transformStyle: "preserve-3d",
           rotateX: springX,
           rotateY: springY,
         }}
+        className="w-[90vw] h-[85vh] sm:h-[80vh] absolute left-[5vw] cursor-pointer overflow-hidden"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         transition={{ duration: 0.8, ease: "easeOut" }}
@@ -104,41 +97,133 @@ const LandingPage = () => {
           className="relative h-full flex flex-col justify-center items-center bg-gray-900 px-6 sm:px-10"
           aria-label="Hero content section"
         >
-          <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" aria-hidden="true">
+          <svg
+            className="absolute top-0 left-0 w-full h-full pointer-events-none hidden sm:block"
+            aria-hidden="true"
+          >
             <circle cx="10%" cy="20%" r="30" fill="#1890ff">
-              <animate attributeName="r" values="30;40;30" dur="6s" repeatCount="indefinite" />
+              <animate
+                attributeName="r"
+                values="30;40;30"
+                dur="6s"
+                repeatCount="indefinite"
+              />
             </circle>
             <circle cx="90%" cy="70%" r="20" fill="#52c41a">
-              <animate attributeName="r" values="20;25;20" dur="4s" repeatCount="indefinite" />
+              <animate
+                attributeName="r"
+                values="20;25;20"
+                dur="4s"
+                repeatCount="indefinite"
+              />
             </circle>
           </svg>
 
-          <div style={{ position: "relative", zIndex: 10 }} aria-label="Introduction Text">
-            <h2
-              className="text-center text-white text-lg sm:text-2xl font-medium mb-4"
-              aria-label="Greeting and profession"
+          <div className="text-center px-4">
+            <motion.h1
+              className="text-2xl md:text-6xl font-heading leading-snug text-white flex flex-col items-center"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Hi, I'm Abdullah 👋 a Software Engineer
-            </h2>
+              <span className="flex items-center justify-center">
+                <span className="w-10 h-10 md:w-12 md:h-12 mr-2">
+                  <Lottie animationData={wavingHand} loop={true} />
+                </span>
+                <span>
+                  I&apos;m{" "}
+                  <span className="inline-block mx-2">
+                    <div className="relative group">
+                      <Image
+                        src={myPic}
+                        alt="Abdullah Khan Picture"
+                        width={50}
+                        height={50}
+                        className="rounded-full shadow-lg inline-block mb-4 group-hover:cursor-pointer"
+                        placeholder="blur"
+                      />
 
-            <h1
-              className="text-[2rem] sm:text-[3rem] md:text-[4rem] font-bold text-center leading-snug text-white drop-shadow-lg font-display"
-              aria-label="Tagline and title"
-            >
-              Crafting <br />
-              Meaningful <br />
-              <span
-                className="flex justify-center items-center gap-1 mt-2"
-                aria-label="Smooth Ideas with eyes"
-              >
-                Sm
-                <Eye size={42} ariaLabel="Eye icon for 'o'" />
-                <Eye size={42} ariaLabel="Eye icon for 'o'" />
-                th Ideas
+                      {/* Tooltip */}
+                      <div className="absolute top-8 left-full ml-2 bg-blue-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition duration-300 flex">
+                        <span role="img" aria-label="me">
+                          😊
+                        </span>{" "}
+                        That's me
+                      </div>
+                    </div>
+                  </span>
+                  <span
+                    className="font-heading"
+                    style={{ color: colors.blue.light }}
+                  >
+                    Abdullah Khan
+                  </span>
+                </span>
               </span>
-            </h1>
+
+              <span className="mt-2">
+                a{" "}
+                <span>
+                  c<Eye/>
+                  <Eye/>l
+                </span>{" "}
+                <span
+                  className="font-heading"
+                  style={{ color: colors.pink.light }}
+                >
+                  Full Stack Developer
+                </span>
+              </span>
+              <span className="mt-1">
+                from{" "}
+                <span
+                  className="font-heading"
+                  style={{ color: colors.orange.light }}
+                >
+                  India
+                </span>
+                <span className="inline-block ml-2">
+                  <div className="relative group">
+                    <Image
+                      src={charminar}
+                      alt="Charminar, Hyderabad"
+                      width={50}
+                      height={50}
+                      className="rounded-full shadow-md inline-block mb-4"
+                      placeholder="blur"
+                    />
+
+                    {/* Tooltip */}
+                    <div className="absolute top-8 left-full ml-2 bg-blue-600 text-white px-2 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition duration-300 flex">
+                      <span role="img" aria-label="charminar">
+                        📍
+                      </span>{" "}
+                      Charminar, Hyderabad
+                    </div>
+                  </div>
+                </span>
+              </span>
+            </motion.h1>
           </div>
 
+          <motion.p
+            className="mt-6 text-gray-400 max-w-xl text-base md:text-lg font-body text-center"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1 }}
+          >
+            I have 2+ years of experience working on useful and mindful products
+            together with startups and known brands.
+          </motion.p>
+          <motion.a
+            href="https://drive.google.com/uc?export=download&id=1p3w9kLc64Em62v-3w-qe1_4fAtj3K9dO"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-block px-6 py-3 rounded-lg bg-white text-gray-900 font-body font-semibold shadow-md hover:bg-gray-200 transition duration-300"
+            whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(0,0,0,0.2)" }}
+          >
+            Download Resume
+          </motion.a>
           <div
             className="md:absolute left-10 bottom-10 mt-8 md:mt-0"
             onClick={() => {
@@ -155,7 +240,7 @@ const LandingPage = () => {
               }
             }}
           >
-            <CircularText />
+            <RotatingText />
           </div>
         </div>
       </motion.div>

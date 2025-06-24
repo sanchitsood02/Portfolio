@@ -17,7 +17,6 @@ const Contact = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  console.log(windowSize.width, "sh");
   useEffect(() => {
     const onScroll = () => {
       setScrollY(window.scrollY);

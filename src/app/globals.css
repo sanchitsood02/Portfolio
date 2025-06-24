@@ -3,10 +3,29 @@
 @import "tailwindcss";
 
 .hide-scrollbar {
-  scrollbar-width: none;        /* Firefox */
-  -ms-overflow-style: none;     /* Internet Explorer and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* Internet Explorer and Edge */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  display: none;                /* Chrome, Safari, and Opera */
+  display: none;
+  /* Chrome, Safari, and Opera */
+}
+
+@theme {
+  --color-indigo: #4D55CC;
+  --color-teal: #007074;
+  --color-amber: #FFB200;
+  --color-beige: #F7F4EA;
+  --color-plum: #640D5F;
+  --color-orange: #EB5B00;
+  --color-raspberry: #D91656;
+}
+
+@theme inline {
+  --font-heading: var(--font-space);
+  --font-body: var(--font-inter);
+  --font-main: var(--font-sans);
 }
