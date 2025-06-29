@@ -4,7 +4,6 @@ import React, {
   useRef,
   useEffect,
   MutableRefObject,
-  Ref,
 } from "react";
 import { motion } from "framer-motion";
 

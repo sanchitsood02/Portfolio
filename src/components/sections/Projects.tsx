@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 import mainPage from "../../assets/images/projects/slayDayMainPage.png";
 import calender from "../../assets/images/projects/slayDayCalender.png";

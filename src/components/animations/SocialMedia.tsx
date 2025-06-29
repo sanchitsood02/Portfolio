@@ -35,7 +35,7 @@ const navItems = [
   },
 ];
 
-export default function FloatingNav() {
+export default function SocialMedia() {
   return (
     <div className="w-fit flex items-center gap-3 px-5 py-2 rounded-full bg-gradient-to-r from-neutral-800 to-gray-700/60 shadow-xl">
       {navItems.map((item, idx) => (

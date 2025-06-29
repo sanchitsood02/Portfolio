@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { FaMedium } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 

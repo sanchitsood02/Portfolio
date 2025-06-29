@@ -8,7 +8,6 @@ const Navbar = () => {
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
   const [prevScroll, setPrevScroll] = useState(0);
   const [visible, setVisible] = useState(true);
-  const [showNavbar, setShowNavbar] = useState(false);
   const [position, setPosition] = useState({
     top: 0,
     left: 0,

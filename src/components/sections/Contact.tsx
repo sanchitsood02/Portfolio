@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import FloatingNav from "../animations/SocialMedia";
+import SocialMedia from "../animations/SocialMedia";
 import BlurText from "../animations/BlurText";
 
 const Contact = () => {
@@ -35,7 +35,7 @@ const Contact = () => {
         </motion.p>
 
         <div className="mt-28">
-          <FloatingNav />
+          <SocialMedia />
         </div>
       </div>
     </section>

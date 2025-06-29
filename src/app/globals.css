@@ -14,16 +14,6 @@
   /* Chrome, Safari, and Opera */
 }
 
-@theme {
-  --color-indigo: #4D55CC;
-  --color-teal: #007074;
-  --color-amber: #FFB200;
-  --color-beige: #F7F4EA;
-  --color-plum: #640D5F;
-  --color-orange: #EB5B00;
-  --color-raspberry: #D91656;
-}
-
 @theme inline {
   --font-heading: var(--font-space);
   --font-body: var(--font-inter);

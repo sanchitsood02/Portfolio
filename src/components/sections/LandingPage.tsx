@@ -1,16 +1,21 @@
 "use client";
 
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import React, { useRef, useState } from "react";
-import Navbar from "../common/Navbar";
+import React, { useRef } from "react";
 import Eye from "../animations/Eye";
 import Image from "next/image";
-import RotatingText from "../animations/RotatingText";
 import myPic from "../../assets/images/MyPic.jpg";
 import charminar from "../../assets/images/Charminar.jpg";
 import Lottie from "lottie-react";
 import wavingHand from "../../assets/animations/handWave.json";
 import { colors } from "@/src/lib/colors";
+import dynamic from "next/dynamic";
+
+// Disable SSR for this client-only component
+const RotatingText = dynamic(() => import("../animations/RotatingText"), {
+  ssr: false,
+});
+
 
 const LandingPage = () => {
   const rotateX = useMotionValue(0);

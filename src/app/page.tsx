@@ -18,32 +18,31 @@ export default function Home() {
 
   return (
     <>
-    <DeviceNotice/>
+      <DeviceNotice />
       <motion.div
-      className="font-body min-h-screen transition-colors duration-500"
-      style={{
-        backgroundColor: isContactInView ? "#0F0F0F" : "#FFFFFF",
-      }}
-    >
-      <Navbar />
-      <section id="home">
-        <LandingPage />
-      </section>
-      <section id="about">
-        <About />
-      </section>
-      <section id="projects">
-        <Projects />
-      </section>
-      <section id="skills">
-        <Skills />
-      </section>
-      <section id="contact" ref={contactRef}>
-        <Contact />
-      </section>
-      <Footer />
-    </motion.div>
+        className="font-body min-h-screen transition-colors duration-500"
+        style={{
+          backgroundColor: isContactInView ? "#0F0F0F" : "#FFFFFF",
+        }}
+      >
+        <Navbar />
+        <section id="home">
+          <LandingPage />
+        </section>
+        <section id="about">
+          <About />
+        </section>
+        <section id="projects">
+          <Projects />
+        </section>
+        <section id="skills">
+          <Skills />
+        </section>
+        <section id="contact" ref={contactRef}>
+          <Contact />
+        </section>
+        <Footer />
+      </motion.div>
     </>
-  
   );
 }
