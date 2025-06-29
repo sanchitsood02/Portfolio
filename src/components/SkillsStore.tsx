@@ -15,6 +15,7 @@ import skillsData from "../lib/skills";
 import user from "../assets/images/MyPic.jpg";
 import reactNative from "../assets/images/React_Native.png";
 import mernStack from "../assets/images/MERN_Stack.png";
+import { FiSearch } from "react-icons/fi";
 
 interface SkillItem {
   name: string;
@@ -112,13 +113,13 @@ export default function SkillsStore() {
   const filteredData = getCombinedData();
 
   return (
-    <div className="flex flex-col md:flex-row bg-black text-white font-sans rounded-2xl w-full max-w-6xl h-[700px] overflow-hidden">
+    <div className="flex flex-col md:flex-row bg-white text-black font-sans rounded-2xl w-full max-w-6xl h-[700px] overflow-hidden border-gray-300 border-[1px]">
       {/* Mobile Dropdown */}
       <div className="md:hidden w-full p-4 bg-zinc-900">
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full p-2 bg-zinc-800 text-white text-sm rounded"
+          className="w-full p-2 bg-gray-200 text-black text-sm rounded"
         >
           {categories.map(({ name }) => (
             <option key={name} value={name}>
@@ -129,40 +130,45 @@ export default function SkillsStore() {
       </div>
 
       {/* Sidebar */}
-      <aside className="hidden md:flex flex-col w-60 bg-zinc-900 p-4 gap-2">
+      <aside className="hidden md:flex flex-col w-60 bg-gray-100 p-4 gap-2">
         <div className="flex gap-2 mb-6">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-400" />
           <div className="w-3 h-3 rounded-full bg-green-500" />
         </div>
-        <input
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          placeholder="Search"
-          className="w-full px-3 py-1.5 bg-zinc-800 rounded text-sm text-white placeholder-zinc-400 mb-4"
-        />
+        <div className="relative w-full mb-4">
+          <FiSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 w-4 h-4" />
+          <input
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search"
+            className="w-full pl-9 pr-3 py-1.5 bg-gray-200 rounded-md text-sm text-white placeholder-zinc-400"
+          />
+        </div>
         <div className="text-zinc-400 text-sm uppercase mb-2">Categories</div>
         {categories.map(({ icon, name }) => (
           <div
             key={name}
             onClick={() => setSelectedCategory(name)}
             className={`flex items-center gap-3 px-3 py-2 rounded cursor-pointer transition-all duration-200 ${
-              selectedCategory === name ? "bg-zinc-700" : "hover:bg-zinc-800"
+              selectedCategory === name && "bg-gray-300"
             }`}
           >
-            <div className="text-lg">{icon}</div>
+            <div className="text-lg text-blue-400">{icon}</div>
             <span className="text-sm">{name}</span>
           </div>
         ))}
-        <div className="mt-auto text-xs text-zinc-500 border-t border-zinc-800 pt-4 flex items-center gap-2">
-          <Image src={user} alt="user" className="w-8 h-8 rounded-full" />
+        <div className="mt-auto text-xs text-zinc-500 border-t border-gray-300 pt-4 flex items-center gap-2">
+          <Image src={user} alt="user profile image" className="w-8 h-8 rounded-full" />
           Dev MAK
         </div>
       </aside>
 
       {/* Main Content */}
       <main className="hide-scrollbar flex-1 p-6 md:p-12 overflow-y-auto space-y-10">
-        <h1 className="text-3xl font-semibold">{selectedCategory}</h1>
+        <div className="border-b-[1px] border-gray-300 py-2">
+          <h1 className="text-3xl font-semibold">{selectedCategory}</h1>
+        </div>
 
         {/* Featured Cards */}
         {searchFilter(filteredData.featured)?.length > 0 && (
@@ -184,7 +190,7 @@ export default function SkillsStore() {
                     {item.badge}
                   </div>
                   <div className="text-lg font-semibold">{item.name}</div>
-                  <div className="text-sm text-zinc-400 line-clamp-2">
+                  <div className="text-sm text-gray-300 line-clamp-2">
                     {item.desc}
                   </div>
                   {item?.image ? (
@@ -222,7 +228,7 @@ export default function SkillsStore() {
               {searchFilter(filteredData.skills).map((app, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 border-b border-zinc-800 pb-4"
+                  className="flex items-start gap-4 border-b border-gray-300 pb-4"
                 >
                   <div className="text-2xl font-semibold flex items-center gap-2">
                     {app.icon}
@@ -247,16 +253,14 @@ export default function SkillsStore() {
               {searchFilter(filteredData.learning).map((skill, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 border-b border-zinc-800 pb-4"
+                  className="flex items-start gap-4 border-b border-gray-300 pb-4"
                 >
                   <div className="text-2xl font-semibold flex items-center gap-2">
                     {skill.icon}
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium">{skill.name}</div>
-                    <div className="text-xs text-zinc-400">
-                      {skill.desc}
-                    </div>
+                    <div className="text-xs text-zinc-400">{skill.desc}</div>
                   </div>
                 </div>
               ))}
@@ -272,7 +276,7 @@ export default function SkillsStore() {
               {searchFilter(filteredData.recent).map((skill, index) => (
                 <div
                   key={index}
-                  className="flex items-start gap-4 border-b border-zinc-800 pb-4"
+                  className="flex items-start gap-4 border-b border-gray-300 pb-4"
                 >
                   <div className="text-2xl font-semibold flex items-center gap-2">
                     {skill.icon}

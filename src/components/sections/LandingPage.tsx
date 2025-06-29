@@ -219,7 +219,8 @@ const LandingPage = () => {
             href="https://drive.google.com/uc?export=download&id=1p3w9kLc64Em62v-3w-qe1_4fAtj3K9dO"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-block px-6 py-3 rounded-lg bg-white text-gray-900 font-body font-semibold shadow-md hover:bg-gray-200 transition duration-300"
+            className="mt-6 inline-block px-6 py-3 rounded-lg bg-white text-gray-900 font-body font-semibold shadow-md hover:bg-gray-200 transition duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500
+"
             whileHover={{ scale: 1.05, boxShadow: "0 5px 15px rgba(0,0,0,0.2)" }}
           >
             Download Resume

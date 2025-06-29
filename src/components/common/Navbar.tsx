@@ -6,13 +6,35 @@ const Navbar = () => {
   const menuItems = ["Home", "About", "Projects", "Skills", "Contact"];
   const containerRef = useRef<HTMLUListElement>(null);
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
-
+  const [prevScroll, setPrevScroll] = useState(0);
+  const [visible, setVisible] = useState(true);
+  const [showNavbar, setShowNavbar] = useState(false);
   const [position, setPosition] = useState({
     top: 0,
     left: 0,
     width: 0,
     height: 0,
   });
+
+  // Show navbar after scrolling a little (e.g. 100px)
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScroll = window.scrollY;
+
+      if (currentScroll <= 0) {
+        setVisible(true);
+      } else if (currentScroll > prevScroll) {
+        setVisible(false); // scrolling down
+      } else {
+        setVisible(true); // scrolling up
+      }
+
+      setPrevScroll(currentScroll);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScroll]);
 
   useLayoutEffect(() => {
     const defaultItem = itemRefs.current["home"];
@@ -51,9 +73,7 @@ const Navbar = () => {
         entries.forEach((entry) => {
           const id = entry.target.id;
           const navItem = itemRefs.current[id];
-console.log(entry.isIntersecting, id)
           if (entry.isIntersecting && navItem) {
-          
             setPosition({
               top: navItem.offsetTop,
               left: navItem.offsetLeft,
@@ -76,12 +96,15 @@ console.log(entry.isIntersecting, id)
   }, [menuItems]);
 
   return (
-    <header className="lg:px-16 px-4 py-4 sticky top-0 z-9999 bg">
+    <motion.header
+      initial={{ y: 0 }}
+      animate={{ y: visible ? 0 : "-100%" }}
+      transition={{ type: "spring", stiffness: 200, damping: 25 }}
+      className="sticky top-0 z-50 px-6 py-4"
+    >
       <div className="flex-1 flex justify-between items-center">
         <div>
-          <a href="#" className="text-xl">
-            Company
-          </a>
+          <h1 className="text-xl font-extrabold tracking-widest">MAK</h1>
         </div>
 
         <div
@@ -106,6 +129,7 @@ console.log(entry.isIntersecting, id)
                     onClick={() => handleItemClick(label)}
                   >
                     <a
+                      role="link"
                       className="relative z-10 md:p-3 py-3 px-0 block"
                       href={`#${key}`}
                     >
@@ -115,8 +139,8 @@ console.log(entry.isIntersecting, id)
                 );
               })}
 
-              {/* 4 animated corner borders with spring transition */}
-              {["tl", "tr", "bl", "br"].map((corner, i) => {
+              {/* Corner borders */}
+              {["tl", "tr", "bl", "br"].map((corner) => {
                 const offsetX = corner.includes("r") ? position.width - 12 : 0;
                 const offsetY = corner.includes("b") ? position.height - 12 : 0;
                 const borderClasses = {
@@ -148,7 +172,7 @@ console.log(entry.isIntersecting, id)
           </nav>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };
 

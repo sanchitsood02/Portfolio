@@ -20,8 +20,13 @@ const About = () => {
       id="about"
       ref={ref}
       className="p-6 md:p-12 min-h-screen flex flex-col items-center"
+      role="region"
+      aria-labelledby="about-heading"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-4 gap-4 flex-grow max-w-5xl sm:max-h-[800px]">
+      <h2 id="about-heading" className="sr-only">
+        About Section
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-4 gap-4 flex-grow max-w-5xl md:max-h-[800px]">
         {/* Hero Text */}
         <motion.div
           className="col-span-1 sm:col-span-2 lg:col-span-4 lg:row-span-2 rounded-4xl p-6 flex flex-col justify-between"
@@ -32,6 +37,8 @@ const About = () => {
           initial={{ scale: 0, transformOrigin: "0% 0%" }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="hero-title"
         >
           <div className="max-w-4xl w-full">
             <div
@@ -47,11 +54,14 @@ const About = () => {
                 radius={100}
                 falloff="linear"
               />
-              <div className="p-2 bg-amber-300 rounded-4xl absolute right-10 top-14 -rotate-35 hidden md:block">
+              <div
+                className="p-2 bg-amber-300 rounded-4xl absolute right-10 top-14 -rotate-35 hidden md:block"
+                aria-hidden="true"
+              >
                 <p>Hover me</p>
               </div>
             </div>
-            <p className="text-lg mt-4 max-w-2xl">
+            <p className="text-lg mt-4 max-w-2xl" id="hero-title" tabIndex={0}>
               I design and develop meaningful digital experiences that blend
               creativity with functionality.
             </p>
@@ -61,18 +71,20 @@ const About = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="mt-6 font-bold text-lg flex items-center gap-2"
+            aria-label="Location: Hyderabad, India"
           >
             <motion.span
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ duration: 1.5, repeat: Infinity }}
+              aria-hidden="true"
             >
               <MdLocationOn size={20} />
             </motion.span>
-            Hyderabad, India
+            <span>Hyderabad, India</span>
           </motion.div>
         </motion.div>
 
-        {/* Journey So Far */}
+        {/* Free Time Highlights */}
         <motion.div
           className="col-span-1 sm:col-span-1 lg:col-span-2 lg:row-span-1 rounded-4xl p-6 flex flex-col relative overflow-hidden shadow-md"
           style={{
@@ -82,34 +94,43 @@ const About = () => {
           initial={{ scale: 0, transformOrigin: "100% 0%" }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="free-time-heading"
         >
           <div className="relative z-10 text-sm space-y-4">
-            <h3 className="font-bold text-2xl text-center">
+            <h3
+              className="font-bold text-2xl text-center"
+              id="free-time-heading"
+            >
               🧠 Free Time Highlights
             </h3>
-
             <StatsSection />
           </div>
         </motion.div>
 
+        {/* Journey So Far */}
         <motion.div
           className="rounded-4xl p-6 flex flex-col justify-center lg:row-span-2 lg:col-span-2"
           style={{
             backgroundColor: colors.pink?.light || "#A0F0ED",
             color: colors.pink?.dark || "#004B50",
           }}
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
+          initial={{ scale: 0 }}
+          animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="journey-heading"
         >
-          <h3 className="font-bold text-2xl mb-6 text-center">
+          <h3
+            className="font-bold text-2xl mb-6 text-center"
+            id="journey-heading"
+          >
             👨‍💻 Journey So Far
           </h3>
-
           <ul className="space-y-4 text-sm">
             {[
               {
-                role: "Devlopment Engineer",
+                role: "Development Engineer",
                 company: "Wavemaker",
                 duration: "Apr 2025 – Present",
               },
@@ -144,14 +165,17 @@ const About = () => {
           initial={{ scaleX: 0 }}
           animate={inView ? { scaleX: 1, transformOrigin: "left" } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="education-heading"
         >
           <div>
-            <h3 className="font-bold text-2xl mb-4">🎓 Education</h3>
+            <h3 className="font-bold text-2xl mb-4" id="education-heading">
+              🎓 Education
+            </h3>
             <p className="text-sm mt-2">B.Tech in Computer Science</p>
             <p className="text-sm">2019 – 2023</p>
           </div>
-
-          <div className="absolute right-0 top-0">
+          <div className="absolute right-0 top-0" aria-hidden="true">
             <div className="w-32 md:w-40">
               <Lottie animationData={educationAnimation} />
             </div>
@@ -160,7 +184,7 @@ const About = () => {
 
         {/* What I Do */}
         <motion.div
-          className="lg:row-span-2 lg:col-span-2 rounded-4xl p-6 flex flex-col justify-center items-center text-left space-y-2 text-base font-semibold"
+          className="lg:row-span-2 lg:col-span-2 rounded-4xl p-6 flex flex-col justify-center items-center text-left space-y-2 text-base"
           style={{
             backgroundColor: colors.blue.light,
             color: colors.blue.dark,
@@ -168,15 +192,18 @@ const About = () => {
           initial={{ scaleY: 0, transformOrigin: "bottom" }}
           animate={inView ? { scaleY: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="skills-heading"
         >
           <div>
-            <h3 className="font-bold text-2xl mb-4">💼 What I Do</h3>
+            <h3 className="font-bold text-2xl mb-4" id="skills-heading">
+              💼 What I Do
+            </h3>
             <p className="text-sm mb-2">
               Specialized in building responsive mobile & web interfaces using
               React Native, React.js, and modern JS frameworks.
             </p>
-
-            <div className="w-[80%] m-auto my-2">
+            <div className="w-[80%] m-auto my-2" aria-hidden="true">
               <Lottie animationData={skillsAnimation} />
             </div>
           </div>
@@ -192,18 +219,26 @@ const About = () => {
           initial={{ scaleX: 0 }}
           animate={inView ? { scaleX: 1, transformOrigin: "left" } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="beyond-heading"
         >
-          <h3 className=" font-bold text-2xl mb-4">✨ Beyond Code</h3>
-          <p className="text-sm leading-relaxed space-y-1">
-            1. <span className="font-bold">Travel</span> lover exploring new
-            places
-            <br />
-            2. Enjoy <span className="font-bold">cooking</span> and trying new
-            recipes
-            <br />
-            3. Read <span className="font-bold">finance</span> books & investing
-            guides
-          </p>
+          <h3 className="font-bold text-2xl mb-4" id="beyond-heading">
+            ✨ Beyond Code
+          </h3>
+          <ol className="list-decimal list-inside text-sm leading-relaxed">
+            <li>
+              <span className="font-bold">Travel</span> lover exploring new
+              places
+            </li>
+            <li>
+              Enjoy <span className="font-bold">cooking</span> and trying new
+              recipes
+            </li>
+            <li>
+              Read <span className="font-bold">finance</span> books & investing
+              guides
+            </li>
+          </ol>
         </motion.div>
 
         {/* Currently Learning */}
@@ -216,8 +251,12 @@ const About = () => {
           initial={{ scale: 0, transformOrigin: "bottom" }}
           animate={inView ? { scale: 1 } : {}}
           transition={{ duration: 0.8, ease: "easeInOut" }}
+          role="region"
+          aria-labelledby="learning-heading"
         >
-          <h3 className="text-2xl">📚 Currently Learning</h3>
+          <h3 className="text-2xl" id="learning-heading">
+            📚 Currently Learning
+          </h3>
           <AnimatedSearchBar />
         </motion.div>
       </div>

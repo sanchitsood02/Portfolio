@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Matter from "matter-js";
 
 interface GravityTextProps {
-  text?: string;
+  children?: React.ReactNode;
   highlightWords?: string[];
   trigger?: "auto" | "scroll" | "click" | "hover" | "custom";
   backgroundColor?: string;
@@ -14,7 +14,7 @@ interface GravityTextProps {
 }
 
 const GravityText: React.FC<GravityTextProps> = ({
-  text = "",
+  children,
   highlightWords = [],
   trigger = "auto",
   backgroundColor = "transparent",
@@ -27,35 +27,47 @@ const GravityText: React.FC<GravityTextProps> = ({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textRef = useRef<HTMLDivElement | null>(null);
   const canvasContainerRef = useRef<HTMLDivElement | null>(null);
-
   const [effectStarted, setEffectStarted] = useState(false);
+
+  const extractWordsFromChildren = (node: React.ReactNode): string[] => {
+    const result: string[] = [];
+
+    React.Children.forEach(node, (child) => {
+      if (typeof child === "string") {
+        result.push(...child.split(/\s+/).filter(Boolean));
+      } else if (typeof child === "number") {
+        result.push(child.toString());
+      } else if (React.isValidElement(child)) {
+        result.push(...extractWordsFromChildren(child.props.children));
+      }
+    });
+
+    return result;
+  };
 
   useEffect(() => {
     if (!textRef.current) return;
-    const words = text.split(" ");
+
+    const words = extractWordsFromChildren(children);
 
     const newHTML = words
       .map((word) => {
-        const isHighlighted = highlightWords.some((hw) => word.startsWith(hw));
-        return `<span
-          class="inline-block mx-[2px] select-none ${
-            isHighlighted ? "text-cyan-500 font-bold" : ""
-          }"
-        >
-          ${word}
-        </span>`;
+        const isHighlighted = highlightWords.some((hw) =>
+          word.startsWith(hw)
+        );
+        return `<span class="inline-block mx-[2px] select-none ${
+          isHighlighted ? "text-cyan-500 font-bold" : ""
+        }">${word}</span>`;
       })
       .join(" ");
 
     textRef.current.innerHTML = newHTML;
-  }, [text, highlightWords]);
+  }, [children, highlightWords]);
 
   useEffect(() => {
     if (trigger === "auto") {
       setEffectStarted(true);
-      return;
-    }
-    if (trigger === "scroll" && containerRef.current) {
+    } else if (trigger === "scroll" && containerRef.current) {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -73,28 +85,21 @@ const GravityText: React.FC<GravityTextProps> = ({
   useEffect(() => {
     if (trigger === "custom" && customTriggered) {
       setEffectStarted(true);
-      return;
     }
   }, [trigger, customTriggered]);
 
   useEffect(() => {
-    if (!effectStarted) {
-      return;
-    }
+    if (!effectStarted) return;
 
     const { Engine, Render, World, Bodies, Runner, Mouse, MouseConstraint } =
       Matter;
-    if (!containerRef.current || !canvasContainerRef.current) {
-      return;
-    }
+    if (!containerRef.current || !canvasContainerRef.current) return;
 
     const containerRect = containerRef.current.getBoundingClientRect();
     const containerWidth = containerRect.width;
     const containerHeight = containerRect.height;
 
-    if (containerWidth <= 0 || containerHeight <= 0) {
-      return;
-    }
+    if (containerWidth <= 0 || containerHeight <= 0) return;
 
     const engine = Engine.create();
     engine.gravity.y = gravity;
@@ -144,9 +149,7 @@ const GravityText: React.FC<GravityTextProps> = ({
       boundaryOptions
     );
 
-    if (!textRef.current) {
-      return;
-    }
+    if (!textRef.current) return;
 
     const wordSpans = textRef.current.querySelectorAll("span");
     const wordBodies = [...wordSpans].map((elem) => {
@@ -161,6 +164,7 @@ const GravityText: React.FC<GravityTextProps> = ({
         frictionAir: 0.01,
         friction: 0.2,
       });
+
       Matter.Body.setVelocity(body, {
         x: (Math.random() - 0.5) * 5,
         y: 0,

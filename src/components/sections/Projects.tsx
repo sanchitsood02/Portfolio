@@ -10,6 +10,7 @@ import checklist from "../../assets/images/projects/slayDayChecklist.png";
 import checklistOverview from "../../assets/images/projects/slayDayChecklistOverview.png";
 import eventForm from "../../assets/images/projects/slayDayEventForm.png";
 import pomodoro from "../../assets/images/projects/slayDayPomodoro.png";
+import BlurText from "../animations/BlurText";
 
 const images = [
   mainPage,
@@ -25,11 +26,28 @@ const Projects = () => {
   const scrollContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    const scrollContent = scrollContentRef.current;
+  const container = containerRef.current;
+  const scrollContent = scrollContentRef.current;
 
-    if (!container || !scrollContent) return;
+  if (!container || !scrollContent) return;
 
+  const isMobileOrTablet = window.innerWidth <= 1024;
+
+  if (isMobileOrTablet) {
+    // AUTO SCROLL FOR MOBILE/TABLET
+    let scrollPos = 0;
+    const scrollStep = 1; // adjust speed
+    const maxScroll = scrollContent.scrollWidth - window.innerWidth;
+
+    const interval = setInterval(() => {
+      scrollPos += scrollStep;
+      if (scrollPos > maxScroll) scrollPos = 0;
+      scrollContent.style.transform = `translateX(-${scrollPos}px)`;
+    }, 16); // roughly 60fps
+
+    return () => clearInterval(interval);
+  } else {
+    // DESKTOP: STICKY SCROLL BEHAVIOR
     const totalScrollWidth = scrollContent.scrollWidth;
     const viewportWidth = window.innerWidth;
     const scrollDistance = totalScrollWidth - viewportWidth;
@@ -39,7 +57,6 @@ const Projects = () => {
 
     const handleScroll = () => {
       const scrollTop = window.scrollY - container.offsetTop;
-
       if (scrollTop >= 0 && scrollTop <= scrollDistance) {
         scrollContent.style.transform = `translateX(-${scrollTop}px)`;
       }
@@ -47,13 +64,24 @@ const Projects = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }
+}, []);
+
 
   return (
-    <>
-      <h1 className="text-4xl text-center font-heading font-bold">Projects</h1>
+    <div>
+      <div className="w-full justify-center items-center flex">
+        <BlurText
+          text="Projects"
+          delay={150}
+          animateBy="words"
+          direction="top"
+          className="text-5xl text-gray-800 font-heading font-bold text-center"
+        />
+      </div>
+
       <div ref={containerRef} className="relative w-screen">
-        <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+        <div className="md:sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
           {/* Title and Description */}
           <div className="text-center px-10 mt-10">
             <div className="relative w-fit my-4">
@@ -76,14 +104,14 @@ const Projects = () => {
           <div className="flex items-center">
             <div
               ref={scrollContentRef}
-              className="flex space-x-6 px-10 transition-transform duration-100 ease-out"
+              className="flex space-x-6 px-10 md:transition-transform md:duration-100 md:ease-out"
             >
               {images.map((img, idx) => (
                 <Image
                   key={idx}
                   src={img}
                   alt={`Project ${idx + 1}`}
-                  width={320}
+                  width={300}
                   className="rounded-xl flex-shrink-0"
                 />
               ))}
@@ -91,7 +119,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

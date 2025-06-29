@@ -1,14 +1,22 @@
 import React from "react";
 import SkillsStore from "../SkillsStore";
+import BlurText from "../animations/BlurText";
 
 const Skills = () => {
   return (
-    <div className="mt-10">
-      <h1 className="text-4xl text-center font-heading font-bold">My Skill Store</h1>
-      <div className="w-full min-h-screen flex items-center justify-center">
+    <section className="w-full min-h-screen flex flex-col items-center justify-center px-4 py-16">
+      <BlurText
+        text="My Skill Store"
+        delay={150}
+        animateBy="words"
+        direction="top"
+        className="text-5xl mb-12 text-gray-800 font-heading font-bold text-center"
+      />
+
+      <div className="w-full max-w-6xl flex items-center justify-center">
         <SkillsStore />
       </div>
-    </div>
+    </section>
   );
 };
 
