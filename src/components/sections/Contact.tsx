@@ -12,7 +12,7 @@ const Contact = () => {
     >
       <div className="max-w-2xl w-full flex flex-col items-center text-center">
         <BlurText
-          text="Let's connect!"
+          text="Let&apos;s connect!"
           delay={150}
           animateBy="words"
           direction="top"

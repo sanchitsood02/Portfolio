@@ -153,7 +153,7 @@ const LandingPage = () => {
                         <span role="img" aria-label="me">
                           😊
                         </span>{" "}
-                        That's me
+                        That&apos;s me
                       </div>
                     </div>
                   </span>
