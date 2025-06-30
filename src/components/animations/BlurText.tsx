@@ -99,12 +99,14 @@ const BlurText: React.FC<BlurTextProps> = ({
       {elements.map((segment, index) => {
         const animateKeyframes = buildKeyframes(fromSnapshot, toSnapshots);
 
-        const spanTransition: Transition = {
+        const spanTransition = {
           duration: totalDuration,
           times,
           delay: (index * delay) / 1000,
-        };
-        (spanTransition as any).ease = easing;
+          ease: easing, // ✅ TypeScript will now allow this
+          type: "tween" as const, // ✅ Required for ease to be valid
+        } satisfies Transition;
+        spanTransition.ease = easing;
 
         return (
           <motion.span

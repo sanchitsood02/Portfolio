@@ -85,6 +85,7 @@ export default function StatsSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.2 }}
             className="relative flex flex-col items-center group cursor-pointer"
+            key={index}
           >
             {/* Tooltip */}
             {stat.tooltip && (

@@ -1,6 +1,6 @@
 "use client";
 
-import { cloneElement, useState } from "react";
+import React, { cloneElement, ReactElement, ReactNode, useState } from "react";
 import {
   FaCode,
   FaServer,
@@ -9,7 +9,7 @@ import {
   FaMobileAlt,
 } from "react-icons/fa";
 import { TbLayoutDashboard } from "react-icons/tb";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import skillsData from "../lib/skills";
 import user from "../assets/images/MyPic.jpg";
@@ -21,9 +21,9 @@ interface SkillItem {
   name: string;
   desc: string;
   badge?: string;
-  icon: any;
+  icon: ReactNode;
   banner?: string;
-  image?: any;
+  image?: StaticImageData | string;
 }
 
 interface SkillCategory {
@@ -159,7 +159,11 @@ export default function SkillsStore() {
           </div>
         ))}
         <div className="mt-auto text-xs text-zinc-500 border-t border-gray-300 pt-4 flex items-center gap-2">
-          <Image src={user} alt="user profile image" className="w-8 h-8 rounded-full" />
+          <Image
+            src={user}
+            alt="user profile image"
+            className="w-8 h-8 rounded-full"
+          />
           Dev MAK
         </div>
       </aside>
@@ -207,11 +211,15 @@ export default function SkillsStore() {
                     <div
                       className={`h-44 mt-auto rounded-xl flex justify-center items-center bg-gradient-to-br ${item.banner}`}
                     >
-                      {cloneElement(item.icon, {
-                        className: `${
-                          item.icon.props.className || ""
-                        } text-white text-6xl`,
-                      })}
+                      {React.cloneElement(
+                        item.icon as React.ReactElement<any>,
+                        {
+                          className: `${
+                            (item.icon as React.ReactElement<any>).props
+                              .className || ""
+                          } text-white text-6xl`,
+                        }
+                      )}
                     </div>
                   )}
                 </div>

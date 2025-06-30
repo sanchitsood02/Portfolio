@@ -114,7 +114,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
       }));
     }, [fromFontVariationSettings, toFontVariationSettings]);
     useEffect(() => {
-      letterRefs.current.forEach((letterRef, index) => {
+      letterRefs.current.forEach((letterRef) => {
         if (!letterRef) return;
         const settings = parsedSettings
           .map(({ axis, fromValue }) => `"${axis}" ${fromValue.toFixed(2)}`)
