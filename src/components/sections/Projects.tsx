@@ -25,47 +25,46 @@ const Projects = () => {
   const scrollContentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-  const container = containerRef.current;
-  const scrollContent = scrollContentRef.current;
+    const container = containerRef.current;
+    const scrollContent = scrollContentRef.current;
 
-  if (!container || !scrollContent) return;
+    if (!container || !scrollContent) return;
 
-  const isMobileOrTablet = window.innerWidth <= 1024;
+    const isMobileOrTablet = window.innerWidth <= 1024;
 
-  if (isMobileOrTablet) {
-    // AUTO SCROLL FOR MOBILE/TABLET
-    let scrollPos = 0;
-    const scrollStep = 1; // adjust speed
-    const maxScroll = scrollContent.scrollWidth - window.innerWidth;
+    if (isMobileOrTablet) {
+      // AUTO SCROLL FOR MOBILE/TABLET
+      let scrollPos = 0;
+      const scrollStep = 1; // adjust speed
+      const maxScroll = scrollContent.scrollWidth - window.innerWidth;
 
-    const interval = setInterval(() => {
-      scrollPos += scrollStep;
-      if (scrollPos > maxScroll) scrollPos = 0;
-      scrollContent.style.transform = `translateX(-${scrollPos}px)`;
-    }, 16); // roughly 60fps
+      const interval = setInterval(() => {
+        scrollPos += scrollStep;
+        if (scrollPos > maxScroll) scrollPos = 0;
+        scrollContent.style.transform = `translateX(-${scrollPos}px)`;
+      }, 16); // roughly 60fps
 
-    return () => clearInterval(interval);
-  } else {
-    // DESKTOP: STICKY SCROLL BEHAVIOR
-    const totalScrollWidth = scrollContent.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    const scrollDistance = totalScrollWidth - viewportWidth;
+      return () => clearInterval(interval);
+    } else {
+      // DESKTOP: STICKY SCROLL BEHAVIOR
+      const totalScrollWidth = scrollContent.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      const scrollDistance = totalScrollWidth - viewportWidth;
 
-    const containerHeight = scrollDistance + window.innerHeight;
-    container.style.height = `${containerHeight}px`;
+      const containerHeight = scrollDistance + window.innerHeight;
+      container.style.height = `${containerHeight}px`;
 
-    const handleScroll = () => {
-      const scrollTop = window.scrollY - container.offsetTop;
-      if (scrollTop >= 0 && scrollTop <= scrollDistance) {
-        scrollContent.style.transform = `translateX(-${scrollTop}px)`;
-      }
-    };
+      const handleScroll = () => {
+        const scrollTop = window.scrollY - container.offsetTop;
+        if (scrollTop >= 0 && scrollTop <= scrollDistance) {
+          scrollContent.style.transform = `translateX(-${scrollTop}px)`;
+        }
+      };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }
-}, []);
-
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
 
   return (
     <div>
@@ -75,24 +74,26 @@ const Projects = () => {
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-5xl text-gray-800 font-heading font-bold text-center"
+          className="text-3xl sm:text-4xl md:text-5xl text-gray-800 font-heading font-bold text-center"
         />
       </div>
 
       <div ref={containerRef} className="relative w-screen">
-        <div className="md:sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+        <div className="md:sticky top-0 min-h-screen overflow-x-hidden flex flex-col justify-center">
           {/* Title and Description */}
           <div className="text-center px-10 mt-10">
-            <div className="relative w-fit my-4">
-              <div className="absolute top-2 -right-9 w-12 h-12 rounded-full bg-amber-400 flex justify-center items-center z-0">
+            <div className="w-fit my-4 mx-auto sm:mx-0 flex items-center justify-center sm:relative">
+              {/* Badge (normal flow on mobile, absolute on sm and up) */}
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-400 flex justify-center items-center sm:absolute sm:top-2 sm:-right-9 z-0 mr-2 sm:mr-0">
                 <p className="text-xs font-medium text-white">01</p>
               </div>
-              <h2 className="text-4xl font-heading text-black relative z-10">
+
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-heading text-black relative z-10">
                 SlayDay
               </h2>
             </div>
 
-            <p className="text-lg text-gray-500 max-w-3xl mx-auto my-4">
+            <p className="text-md md:text-lg text-gray-500 max-w-3xl mx-auto my-8">
               SlayDay is a productivity app that combines event planning,
               checklist management, and Pomodoro-style time tracking — all with
               offline support and automatic daily backups to Cloud Firestore.

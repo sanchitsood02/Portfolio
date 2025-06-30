@@ -10,7 +10,7 @@ const Skills = () => {
         delay={150}
         animateBy="words"
         direction="top"
-        className="text-5xl mb-12 text-gray-800 font-heading font-bold text-center"
+        className="text-3xl sm:text-4xl md:text-5xl mb-12 text-gray-800 font-heading font-bold text-center"
       />
 
       <div className="w-full max-w-6xl flex items-center justify-center">

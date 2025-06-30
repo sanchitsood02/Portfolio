@@ -39,12 +39,15 @@ export default function SocialMedia() {
   return (
     <div className="w-fit flex items-center gap-3 px-5 py-2 rounded-full bg-gradient-to-r from-neutral-800 to-gray-700/60 shadow-xl">
       {navItems.map((item, idx) => (
-        <motion.div
+        <motion.a
           key={idx}
+          href={item.link}
+          target="_blank"
+          rel="noopener noreferrer"
           whileHover={{ scale: 1.5, transformOrigin: "bottom" }}
-          className="group"
+          className="group relative"
         >
-          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-black text-white text-sm px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10">
             {item.label}
           </div>
 
@@ -55,7 +58,7 @@ export default function SocialMedia() {
           >
             <span className={`${item.color}`}>{item.icon}</span>
           </div>
-        </motion.div>
+        </motion.a>
       ))}
     </div>
   );

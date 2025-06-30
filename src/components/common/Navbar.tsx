@@ -1,6 +1,8 @@
 "use client";
 import { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image"
+import user from "../../assets/images/MyPic.jpg";
 
 const Navbar = () => {
   const menuItems = ["Home", "About", "Projects", "Skills", "Contact"];
@@ -102,8 +104,10 @@ const Navbar = () => {
       className="sticky top-0 z-50 px-6 py-4"
     >
       <div className="flex-1 flex justify-between items-center">
-        <div>
-          <h1 className="text-xl font-extrabold tracking-widest">MAK</h1>
+
+        <div className="mt-auto text-black pt-4 flex items-center gap-2">
+          <Image src={user} alt="user profile image" className="w-8 h-8 rounded-full" />
+          <p>Abdullah khan</p>
         </div>
 
         <div

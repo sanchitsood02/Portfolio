@@ -16,7 +16,7 @@ const Contact = () => {
           delay={150}
           animateBy="words"
           direction="top"
-          className="text-5xl mb-8 text-white font-heading font-bold"
+          className="text-3xl sm:text-4xl md:text-5xl mb-8 text-white font-heading font-bold"
         />
 
         {/* Hidden accessible heading for screen readers */}
@@ -28,7 +28,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-gray-400 mt-6 text-xl"
+          className="text-gray-400 mt-6 text-md sm:text-xl"
         >
           Whether you have an idea, a collaboration in mind, or just want to say
           hello — feel free to get in touch. I’d love to hear from you!

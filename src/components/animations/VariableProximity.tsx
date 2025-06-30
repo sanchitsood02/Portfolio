@@ -21,8 +21,9 @@ type VariableProximityProps = {
   style?: React.CSSProperties;
 } & React.HTMLAttributes<HTMLSpanElement>;
 
-function useAnimationFrame(callback: () => void) {
+function useAnimationFrameActive(active: boolean, callback: () => void) {
   useEffect(() => {
+    if (!active) return;
     let frameId: number;
     const loop = () => {
       callback();
@@ -30,7 +31,7 @@ function useAnimationFrame(callback: () => void) {
     };
     frameId = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(frameId);
-  }, [callback]);
+  }, [active, callback]);
 }
 
 function useMousePositionRef(
@@ -83,12 +84,13 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
     ref
   ) => {
     const letterRefs = useRef<Array<HTMLSpanElement | null>>([]);
-    const interpolatedSettingsRef = useRef<any[]>([]);
+    const interpolatedSettingsRef = useRef<string[]>([]);
     const mousePositionRef = useMousePositionRef(containerRef);
     const lastPositionRef = useRef<{ x: number | null; y: number | null }>({
       x: null,
       y: null,
     });
+    const [active, setActive] = React.useState(false);
 
     const parsedSettings = useMemo(() => {
       const parseSettings = (settingsStr: string) =>
@@ -140,26 +142,33 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
       }
     };
 
-    useAnimationFrame(() => {
+    useEffect(() => {
+      if (!containerRef?.current) return;
+      const handleEnter = () => setActive(true);
+      const handleLeave = () => setActive(false);
+      containerRef.current.addEventListener("mouseenter", handleEnter);
+      containerRef.current.addEventListener("mouseleave", handleLeave);
+      return () => {
+        containerRef.current?.removeEventListener("mouseenter", handleEnter);
+        containerRef.current?.removeEventListener("mouseleave", handleLeave);
+      };
+    }, [containerRef]);
+
+    useAnimationFrameActive(active, () => {
       if (!containerRef?.current) return;
       const { x, y } = mousePositionRef.current;
       if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
         return;
       }
       lastPositionRef.current = { x, y };
-
       const containerRect = containerRef.current.getBoundingClientRect();
-
       letterRefs.current.forEach((letterRef, index) => {
         if (!letterRef) return;
-
         const rect = letterRef.getBoundingClientRect();
         const letterCenterX = rect.left + rect.width / 2 - containerRect.left;
         const letterCenterY = rect.top + rect.height / 2 - containerRect.top;
-
         const distance = calculateDistance(x, y, letterCenterX, letterCenterY);
         const falloffValue = calculateFalloff(distance);
-
         const interpolatedSettings = parsedSettings
           .map(({ axis, fromValue, toValue }) => {
             const interpolatedValue =
@@ -167,9 +176,10 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
             return `"${axis}" ${interpolatedValue.toFixed(2)}`;
           })
           .join(", ");
-
-        interpolatedSettingsRef.current[index] = interpolatedSettings;
-        letterRef.style.fontVariationSettings = interpolatedSettings;
+        if (interpolatedSettingsRef.current[index] !== interpolatedSettings) {
+          interpolatedSettingsRef.current[index] = interpolatedSettings;
+          letterRef.style.fontVariationSettings = interpolatedSettings;
+        }
       });
     });
 
@@ -184,6 +194,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
         {label.split("\n").map((line, lineIndex) => (
           <span key={lineIndex} style={{ display: "block" }}>
             {[...line].map((char, i) => {
+              // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const index =
                 label
                   .split("\n")
@@ -193,7 +204,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
               return (
                 <motion.span
                   key={index}
-                  ref={(el: any) => (letterRefs.current[index] = el)}
+                  ref={(el: HTMLSpanElement | null) => { letterRefs.current[index] = el; }}
                   style={{
                     display: "inline-block",
                     whiteSpace: char === " " ? "pre" : undefined,
@@ -210,5 +221,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
     );
   }
 );
+
+VariableProximity.displayName = "VariableProximity";
 
 export default VariableProximity;

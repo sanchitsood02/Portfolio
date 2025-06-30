@@ -5,8 +5,6 @@ import {
   FaJs,
   FaServer,
   FaDatabase,
-  FaJava,
-  FaCuttlefish,
   FaGitAlt,
   FaNodeJs,
   FaPython,
@@ -110,7 +108,7 @@ const skillsData: SkillsData = {
     featured: [
       {
         name: "Tailwind CSS",
-        desc: "Utility-first CSS framework for rapid UI development.",
+        desc: "Utilized for fast and custom UI design in portfolio and product-based UIs.",
         badge: "DESIGN TOOLKIT",
         icon: <SiTailwindcss className="text-sky-400 text-4xl" />,
         banner: "from-sky-400 via-blue-300 to-blue-500",

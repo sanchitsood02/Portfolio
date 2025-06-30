@@ -115,7 +115,7 @@ export default function SkillsStore() {
   return (
     <div className="flex flex-col md:flex-row bg-white text-black font-sans rounded-2xl w-full max-w-6xl h-[700px] overflow-hidden border-gray-300 border-[1px]">
       {/* Mobile Dropdown */}
-      <div className="md:hidden w-full p-4 bg-zinc-900">
+      <div className="md:hidden w-full p-4">
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -142,7 +142,7 @@ export default function SkillsStore() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search"
-            className="w-full pl-9 pr-3 py-1.5 bg-gray-200 rounded-md text-sm text-white placeholder-zinc-400"
+            className="w-full pl-9 pr-3 py-1.5 bg-gray-200 rounded-md text-sm placeholder-zinc-400"
           />
         </div>
         <div className="text-zinc-400 text-sm uppercase mb-2">Categories</div>

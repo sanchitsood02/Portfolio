@@ -6,22 +6,25 @@ export default function DeviceNotice() {
   const [showNotice, setShowNotice] = useState(false);
 
   useEffect(() => {
-    // Only show if not already shown this session
     const alreadyShown = sessionStorage.getItem("desktopNoticeShown");
-    console.log(alreadyShown)
     if (alreadyShown) return;
 
-    // Check for mobile device by userAgent
     const isMobileDevice = /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
 
-    // Check for small screen width
     const isSmallScreen = window.innerWidth < 768;
 
     if (isMobileDevice || isSmallScreen) {
       setShowNotice(true);
       sessionStorage.setItem("desktopNoticeShown", "true");
+
+      // Automatically hide after 10 seconds
+      const timeout = setTimeout(() => {
+        setShowNotice(false);
+      }, 10000); // 10 seconds = 10000ms
+
+      return () => clearTimeout(timeout); // cleanup
     }
   }, []);
 

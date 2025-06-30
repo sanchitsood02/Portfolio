@@ -3,23 +3,40 @@ import { useEffect, useRef, useState } from "react";
 
 export default function Eye() {
   const eyeRef = useRef<HTMLDivElement>(null);
-  const [angle, setAngle] = useState(0);
+  const pupilRef = useRef<HTMLDivElement>(null);
   const [isBlinking, setIsBlinking] = useState(false);
+  const angleRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  const needsUpdate = useRef(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!eyeRef.current) return;
-
       const rect = eyeRef.current.getBoundingClientRect();
       const eyeX = rect.left + rect.width / 2;
       const eyeY = rect.top + rect.height / 2;
-
       const angleRad = Math.atan2(e.clientY - eyeY, e.clientX - eyeX);
-      setAngle(angleRad);
+      if (angleRef.current !== angleRad) {
+        angleRef.current = angleRad;
+        needsUpdate.current = true;
+      }
     };
-
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    const update = () => {
+      if (needsUpdate.current && pupilRef.current) {
+        pupilRef.current.style.transform = `translate(${Math.cos(angleRef.current) * 4}px, ${Math.sin(angleRef.current) * 4}px)`;
+        needsUpdate.current = false;
+      }
+      rafRef.current = requestAnimationFrame(update);
+    };
+    rafRef.current = requestAnimationFrame(update);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -27,14 +44,12 @@ export default function Eye() {
       setIsBlinking(true);
       setTimeout(() => setIsBlinking(false), 150);
     };
-
     const scheduleNextBlink = () => {
       setTimeout(() => {
         blink();
         scheduleNextBlink();
       }, 5000);
     };
-
     scheduleNextBlink();
   }, []);
 
@@ -45,14 +60,14 @@ export default function Eye() {
     >
       {/* Pupil */}
       <div
+        ref={pupilRef}
         className="rounded-full bg-black absolute transition-transform duration-75"
         style={{
           width: "33%",
           height: "33%",
-          transform: `translate(${Math.cos(angle) * 4}px, ${Math.sin(angle) * 4}px)`,
+          transform: `translate(${Math.cos(angleRef.current) * 4}px, ${Math.sin(angleRef.current) * 4}px)`
         }}
       />
-
       {/* Eyelid */}
       <div
         className={`absolute top-0 left-0 w-full h-full bg-black transition-transform duration-150 ease-in-out z-10 ${
