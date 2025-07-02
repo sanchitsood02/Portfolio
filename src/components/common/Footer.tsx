@@ -12,7 +12,7 @@ const Footer = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full text-white py-6 flex flex-col items-center text-sm"
+      className="w-full text-white py-6 flex flex-col items-center text-sm px-4"
     >
       <div className="flex items-center flex-wrap justify-center gap-2 text-gray-300">
         <span>Built with</span>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="mt-4 text-gray-500">
+      <div className="mt-4 text-gray-500 text-center">
         © {currentYear} Mohammed Abdullah Khan. All rights reserved.
       </div>
     </motion.footer>

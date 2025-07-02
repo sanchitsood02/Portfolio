@@ -47,61 +47,6 @@ export default function SkillsStore() {
   const [searchTerm, setSearchTerm] = useState("");
 
   function getCombinedData(): SkillCategory {
-    if (selectedCategory === "All") {
-      const all: SkillCategory & { featured: SkillItem[] } = {
-        featured: [],
-        skills: [],
-        learning: [],
-        recent: [],
-      };
-
-      const seen = {
-        skills: new Set<string>(),
-        learning: new Set<string>(),
-        recent: new Set<string>(),
-      };
-
-      for (const category of Object.values(skillsData) as SkillCategory[]) {
-        for (const key of ["skills", "learning", "recent"] as const) {
-          if (category[key]) {
-            for (const item of category[key]) {
-              if (!seen[key].has(item.name)) {
-                all[key].push(item);
-                seen[key].add(item.name);
-              }
-            }
-          }
-        }
-      }
-
-      const featuredSeen = new Set<string>();
-      const featuredItems = [
-        {
-          name: "MERN Stack",
-          desc: "Full-stack JavaScript development using MongoDB, Express, React, and Node.js.",
-          badge: "Web Favorite",
-          icon: <FaCode className="text-green-400 text-4xl" />,
-          banner: "from-green-400 via-green-500 to-green-600",
-          image: mernStack,
-        },
-        {
-          name: "React Native",
-          desc: "Build native mobile apps using JavaScript and React.",
-          badge: "Mobile Favorite",
-          icon: <FaMobileAlt className="text-blue-400 text-4xl" />,
-          banner: "from-blue-400 via-blue-500 to-blue-600",
-          image: reactNative,
-        },
-      ];
-
-      for (const item of featuredItems) {
-        if (!featuredSeen.has(item.name)) {
-          all.featured.push(item);
-          featuredSeen.add(item.name);
-        }
-      }
-      return all;
-    }
     return skillsData[selectedCategory];
   }
 
@@ -291,7 +236,7 @@ export default function SkillsStore() {
                   </div>
                   <div className="flex-1">
                     <div className="text-sm font-medium">{skill.name}</div>
-                    <div className="text-xs text-zinc-400">Used Recently</div>
+                    <div className="text-xs text-zinc-400">{skill.desc}</div>
                   </div>
                 </div>
               ))}

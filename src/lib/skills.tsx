@@ -8,6 +8,8 @@ import {
   FaGitAlt,
   FaNodeJs,
   FaPython,
+  FaMobileAlt,
+  FaCode,
 } from "react-icons/fa";
 import {
   SiTypescript,
@@ -24,6 +26,9 @@ import {
   SiRealm,
 } from "react-icons/si";
 import { BsBootstrap } from "react-icons/bs";
+import reactNative from "../assets/images/React_Native.png";
+import mernStack from "../assets/images/MERN_Stack.png";
+import { StaticImageData } from "next/image";
 
 export type SkillItem = {
   name: string;
@@ -37,7 +42,8 @@ export type FeaturedItem = {
   desc: string;
   badge: string;
   icon: JSX.Element;
-  banner?: any;
+  banner?: string;
+  image?: StaticImageData | string;
 };
 
 export type CategoryData = {
@@ -68,13 +74,13 @@ const skillsData: SkillsData = {
       },
       {
         name: "Bootstrap",
-        desc: "Used for responsive design during internships and personal landing pages.",
+        desc: "Used for responsive design during internships and personal projects.",
         badge: "UI TOOLKIT",
         icon: <BsBootstrap className="text-indigo-400" />,
       },
       {
         name: "JavaScript",
-        desc: "Used for frontend logic and React-based applications, including state and DOM manipulation.",
+        desc: "Used in React Native and web projects, including state and DOM manipulation.",
         badge: "Most Used",
         icon: <FaJs className="text-yellow-300" />,
       },
@@ -115,7 +121,7 @@ const skillsData: SkillsData = {
       },
       {
         name: "Next.js",
-        desc: "Used for building SEO-optimized, server-rendered apps and blogs.",
+        desc: "Used for building SEO-optimized, server-rendered apps.",
         badge: "FULLSTACK",
         icon: <SiNextdotjs className="text-black text-4xl" />,
         banner: "from-neutral-800 via-gray-900 to-black",
@@ -178,7 +184,7 @@ const skillsData: SkillsData = {
     learning: [
       {
         name: "Redis",
-        desc: "Exploring for caching strategies and session storage while learning system design",
+        desc: "Exploring for caching strategies and session storage while learning URL shortening",
         badge: "CACHE",
         icon: <SiRedis className="text-red-500" />,
       },
@@ -189,13 +195,13 @@ const skillsData: SkillsData = {
     skills: [
       {
         name: "MongoDB",
-        desc: "Used as NoSQL database for full-stack projects with Mongoose ORM.",
+        desc: "Used as NoSQL database for full-stack project with Mongoose ORM.",
         badge: "FLEXIBLE STORAGE",
         icon: <SiMongodb className="text-green-600" />,
       },
       {
         name: "Firestore",
-        desc: "Integrated with Firebase for real-time database syncing in apps.",
+        desc: "Integrated with Firebase for real-time database syncing in react native based app and client web sites.",
         badge: "REAL-TIME DB",
         icon: <SiFirebase className="text-yellow-400" />,
       },
@@ -221,7 +227,7 @@ const skillsData: SkillsData = {
     recent: [
       {
         name: "RealmDB",
-        desc: "Recently used for persistent storage in mobile apps built with Expo.",
+        desc: "Recently used for persistent storage in mobile app(SlayDay) built with Expo.",
         badge: "LOCAL SYNC",
         icon: <SiRealm className="text-indigo-500" />,
       },
@@ -260,7 +266,7 @@ const skillsData: SkillsData = {
       },
       {
         name: "Vercel",
-        desc: "Deployed frontend apps and portfolios with seamless CI/CD workflows.",
+        desc: "Deployed portfolio with seamless CI/CD workflows.",
         badge: "DEPLOY",
         icon: <SiVercel className="text-black" />,
       },
@@ -289,7 +295,7 @@ const skillsData: SkillsData = {
     skills: [
       {
         name: "React Native",
-        desc: "Built cross-platform mobile apps with animations, charts, and Firebase integration.",
+        desc: "Built cross-platform mobile components with animations, charts, and Firebase integration in my professional work.",
         badge: "MOBILE DEV",
         icon: <FaReact className="text-cyan-400" />,
       },
@@ -305,18 +311,228 @@ const skillsData: SkillsData = {
         badge: "LOCAL SYNC",
         icon: <SiRealm className="text-indigo-500" />,
       },
+      {
+        name: "NativeWind",
+        desc: "Used to bring Tailwind-like utility-first styling to React Native apps, improving dev speed and consistency.",
+        badge: "UTILITY STYLE",
+        icon: <SiTailwindcss className="text-sky-400" />,
+      },
     ],
     recent: [],
     featured: [
       {
         name: "React Native",
-        desc: "Built cross-platform mobile apps with animations and accessibility improvements.",
+        desc: "Built cross-platform mobile app components with animations and accessibility improvements in my professional work.",
         badge: "MOBILE DEV",
         icon: <FaReact className="text-cyan-400 text-4xl" />,
         banner: "from-blue-400 via-cyan-500 to-teal-400",
       },
     ],
     learning: [],
+  },
+
+  All: {
+    skills: [
+      {
+        name: "React Native",
+        desc: "Built cross-platform mobile components with animations, charts, and Firebase integration in my professional work.",
+        badge: "MOBILE DEV",
+        icon: <FaReact className="text-cyan-400" />,
+      },
+      {
+        name: "Expo",
+        desc: "Used to streamline React Native development, updates, and builds.",
+        badge: "MOBILE",
+        icon: <SiExpo className="text-black" />,
+      },
+      {
+        name: "Python",
+        desc: "Used for AI/ML projects, scripting, and solving 550+ LeetCode DSA problems.",
+        badge: "VERSATILE & POPULAR",
+        icon: <FaPython className="text-blue-400" />,
+      },
+      {
+        name: "React.js",
+        desc: "Used to build interactive UIs in web projects and dashboards using reusable components.",
+        badge: "TOP SKILL",
+        icon: <FaReact className="text-cyan-400" />,
+      },
+      {
+        name: "TypeScript",
+        desc: "Used in React Native and web projects for better type safety and maintainability.",
+        badge: "MODERN STACK",
+        icon: <SiTypescript className="text-blue-500" />,
+      },
+      {
+        name: "Tailwind CSS",
+        desc: "Utilized for fast and custom UI design in portfolio and product-based UIs.",
+        badge: "UI TOOLKIT",
+        icon: <SiTailwindcss className="text-sky-400" />,
+      },
+      {
+        name: "NativeWind",
+        desc: "Used to bring Tailwind-like utility-first styling to React Native apps, improving dev speed and consistency.",
+        badge: "UTILITY STYLE",
+        icon: <SiTailwindcss className="text-sky-400" />,
+      },
+      {
+        name: "HTML5 & CSS3",
+        desc: "Built responsive layouts and semantic markup for client websites and projects.",
+        badge: "CORE WEB",
+        icon: <FaHtml5 className="text-orange-500" />,
+      },
+      {
+        name: "JavaScript",
+        desc: "Used in React Native and web projects, including state and DOM manipulation.",
+        badge: "Most Used",
+        icon: <FaJs className="text-yellow-300" />,
+      },
+      {
+        name: "Bootstrap",
+        desc: "Used for responsive design during internships and personal projects.",
+        badge: "UI TOOLKIT",
+        icon: <BsBootstrap className="text-indigo-400" />,
+      },
+      {
+        name: "Node.js",
+        desc: "Built backend services and REST APIs for full-stack apps using Express.",
+        badge: "Backend Favorite",
+        icon: <FaNodeJs className="text-green-500" />,
+      },
+      {
+        name: "Firestore",
+        desc: "Integrated with Firebase for real-time database syncing in react native based app and client web sites.",
+        badge: "REAL-TIME DB",
+        icon: <SiFirebase className="text-yellow-400" />,
+      },
+      {
+        name: "RealmDB",
+        desc: "Used for offline-first local storage in React Native projects.",
+        badge: "LOCAL SYNC",
+        icon: <SiRealm className="text-indigo-500" />,
+      },
+      {
+        name: "Firebase",
+        desc: "Implemented user auth, analytics, and database in mobile/web apps.",
+        badge: "CLOUD",
+        icon: <SiFirebase className="text-yellow-400" />,
+      },
+      {
+        name: "Vercel",
+        desc: "Deployed portfolio with seamless CI/CD workflows.",
+        badge: "DEPLOY",
+        icon: <SiVercel className="text-black" />,
+      },
+      {
+        name: "MongoDB",
+        desc: "Used as NoSQL database for full-stack project with Mongoose ORM.",
+        badge: "FLEXIBLE STORAGE",
+        icon: <SiMongodb className="text-green-600" />,
+      },
+      {
+        name: "MySQL",
+        desc: "Used in Spring Boot projects during internship to store structured data.",
+        badge: "TRUSTED DB",
+        icon: <SiMysql className="text-blue-500" />,
+      },
+      {
+        name: "SQL",
+        desc: "Proficient in writing complex queries for relational data analysis.",
+        badge: "DATA ACCESS",
+        icon: <FaDatabase className="text-purple-400" />,
+      },
+      {
+        name: "Git",
+        desc: "Used for version control and collaborative development across teams.",
+        badge: "CONTROL",
+        icon: <FaGitAlt className="text-orange-400" />,
+      },
+      {
+        name: "Postman",
+        desc: "Used for API testing, debugging, and sharing during backend development.",
+        badge: "TESTING",
+        icon: <SiPostman className="text-orange-300" />,
+      },
+      {
+        name: "Express.js",
+        desc: "Used with Node.js to create RESTful APIs and middleware for projects.",
+        badge: "FULL-STACK",
+        icon: <FaServer className="text-gray-300" />,
+      },
+    ],
+
+    recent: [
+      {
+        name: "Tailwind CSS",
+        desc: "Used in recent portfolio redesigns for rapid prototyping.",
+        badge: "UI TOOLKIT",
+        icon: <SiTailwindcss className="text-sky-400" />,
+      },
+      {
+        name: "TypeScript",
+        desc: "Actively used in React Native codebases for type safety and bug prevention.",
+        badge: "MODERN STACK",
+        icon: <SiTypescript className="text-blue-500" />,
+      },
+      {
+        name: "Node.js",
+        desc: "Used recently in full-stack project with MongoDB and Firebase integration.",
+        badge: "Backend Favorite",
+        icon: <FaNodeJs className="text-green-500" />,
+      },
+      {
+        name: "RealmDB",
+        desc: "Recently used for persistent storage in mobile app(SlayDay) built with Expo.",
+        badge: "LOCAL SYNC",
+        icon: <SiRealm className="text-indigo-500" />,
+      },
+    ],
+
+    featured: [
+      {
+        name: "MERN Stack",
+        desc: "Full-stack JavaScript development using MongoDB, Express, React, and Node.js.",
+        badge: "Web Favorite",
+        icon: <FaCode className="text-green-400 text-4xl" />,
+        banner: "from-green-400 via-green-500 to-green-600",
+        image: mernStack,
+      },
+      {
+        name: "React Native",
+        desc: "Build native mobile apps using JavaScript and React.",
+        badge: "Mobile Favorite",
+        icon: <FaMobileAlt className="text-blue-400 text-4xl" />,
+        banner: "from-blue-400 via-blue-500 to-blue-600",
+        image: reactNative,
+      },
+    ],
+
+    learning: [
+      {
+        name: "Next.js",
+        desc: "Exploring for advanced server-side rendering and API routes.",
+        badge: "FRAMEWORK",
+        icon: <SiNextdotjs className="text-black" />,
+      },
+      {
+        name: "Framer Motion",
+        desc: "Used for animations and smooth transitions in this portfolio.",
+        badge: "ANIMATION",
+        icon: <SiFramer className="text-pink-400" />,
+      },
+      {
+        name: "Redis",
+        desc: "Exploring for caching strategies and session storage while learning URL shortening",
+        badge: "CACHE",
+        icon: <SiRedis className="text-red-500" />,
+      },
+      {
+        name: "Postman",
+        desc: "Exploring advanced API test automation with collections.",
+        badge: "TESTING",
+        icon: <SiPostman className="text-orange-300" />,
+      },
+    ],
   },
 };
 
