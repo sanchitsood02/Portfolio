@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useLayoutEffect, useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import Image from "next/image"
+import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import user from "../../assets/images/MyPic.jpg";
 
 const Navbar = () => {
@@ -10,6 +10,7 @@ const Navbar = () => {
   const itemRefs = useRef<Record<string, HTMLLIElement | null>>({});
   const [prevScroll, setPrevScroll] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
   const [position, setPosition] = useState({
     top: 0,
     left: 0,
@@ -17,11 +18,10 @@ const Navbar = () => {
     height: 0,
   });
 
-  // Show navbar after scrolling a little (e.g. 100px)
+  // Hide/show navbar on scroll
   useEffect(() => {
     const handleScroll = () => {
       const currentScroll = window.scrollY;
-
       if (currentScroll <= 0) {
         setVisible(true);
       } else if (currentScroll > prevScroll) {
@@ -29,7 +29,6 @@ const Navbar = () => {
       } else {
         setVisible(true); // scrolling up
       }
-
       setPrevScroll(currentScroll);
     };
 
@@ -37,6 +36,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScroll]);
 
+  // Set default border position to "Home"
   useLayoutEffect(() => {
     const defaultItem = itemRefs.current["home"];
     if (defaultItem) {
@@ -49,6 +49,7 @@ const Navbar = () => {
     }
   }, []);
 
+  // Animate underline to selected item
   const handleItemClick = (label: string) => {
     const sectionId = label.toLowerCase();
     const section = document.getElementById(sectionId);
@@ -66,8 +67,11 @@ const Navbar = () => {
         height: navItem.offsetHeight,
       });
     }
+
+    setMenuOpen(false); // close mobile menu
   };
 
+  // Update border on scroll to section
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -96,20 +100,52 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, [menuItems]);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
+
   return (
     <motion.header
       initial={{ y: 0 }}
       animate={{ y: visible ? 0 : "-100%" }}
       transition={{ type: "spring", stiffness: 200, damping: 25 }}
-      className="sticky top-0 z-50 px-6 py-4"
+      className="sticky top-0 z-50 px-6 py-4 bg-white"
     >
-      <div className="flex-1 flex justify-between items-center">
-
-        <div className="mt-auto text-black pt-4 flex items-center gap-2">
-          <Image src={user} alt="user profile image" className="w-8 h-8 rounded-full" />
-          <p>Abdullah khan</p>
+      <div className="flex justify-between items-center">
+        {/* Left: Profile */}
+        <div className="flex items-center gap-2">
+          <Image
+            src={user}
+            alt="user profile image"
+            className="w-8 h-8 rounded-full"
+          />
+          <p className="text-black font-medium">Abdullah Khan</p>
         </div>
 
+        {/* Hamburger Icon - mobile only */}
+        <div className="md:hidden z-50">
+          <button
+            className="flex flex-col justify-center items-center w-10 h-10 gap-[5px]"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <motion.span
+              animate={menuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+              className="w-6 h-0.5 bg-black origin-center"
+            />
+            <motion.span
+              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
+              className="w-4 h-0.5 bg-black origin-center"
+            />
+            <motion.span
+              animate={menuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+              className="w-5 h-0.5 bg-black origin-center"
+            />
+          </button>
+        </div>
+
+        {/* Desktop Menu */}
         <div
           className="hidden md:flex md:items-center md:w-auto w-full"
           id="menu"
@@ -175,6 +211,34 @@ const Navbar = () => {
           </nav>
         </div>
       </div>
+
+      {/* Mobile Menu Dropdown */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed top-[64px] left-0 w-full bg-white z-40 overflow-hidden shadow-md rounded-b-xl"
+          >
+            <ul className="flex flex-col items-center gap-6 py-6 text-lg">
+              {menuItems.map((label) => {
+                const key = label.toLowerCase();
+                return (
+                  <li
+                    key={key}
+                    className="cursor-pointer"
+                    onClick={() => handleItemClick(label)}
+                  >
+                    <a href={`#${key}`}>{label}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
 };
