@@ -56,7 +56,7 @@ export default function Eye() {
   return (
     <div
       ref={eyeRef}
-      className="w-4 h-4 sm:w-7 sm:h-7 rounded-full bg-white inline-flex items-center justify-center relative overflow-hidden mx-1"
+      className="w-4 h-4 md:w-7 md:h-7 rounded-full bg-white inline-flex items-center justify-center relative overflow-hidden mx-1"
     >
       {/* Pupil */}
       <div

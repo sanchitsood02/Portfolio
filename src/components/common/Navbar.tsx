@@ -2,7 +2,7 @@
 import { useRef, useLayoutEffect, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import user from "../../assets/images/MyPic.jpg";
+import user from "../../assets/images/MyPic.png";
 
 const Navbar = () => {
   const menuItems = ["Home", "About", "Projects", "Skills", "Contact"];
@@ -17,6 +17,7 @@ const Navbar = () => {
     width: 0,
     height: 0,
   });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   // Hide/show navbar on scroll
   useEffect(() => {
@@ -73,7 +74,8 @@ const Navbar = () => {
 
   // Update border on scroll to section
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    // Observer for most sections
+    const defaultObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const id = entry.target.id;
@@ -91,19 +93,54 @@ const Navbar = () => {
       { threshold: 0.6 }
     );
 
+    // Observer for "projects" with a lower threshold
+    const projectsObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          const navItem = itemRefs.current[id];
+          if (entry.isIntersecting && navItem) {
+            setPosition({
+              top: navItem.offsetTop,
+              left: navItem.offsetLeft,
+              width: navItem.offsetWidth,
+              height: navItem.offsetHeight,
+            });
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
     menuItems.forEach((label) => {
       const id = label.toLowerCase();
       const section = document.getElementById(id);
-      if (section) observer.observe(section);
+      if (section) {
+        if (id === "projects") {
+          projectsObserver.observe(section);
+        } else {
+          defaultObserver.observe(section);
+        }
+      }
     });
 
-    return () => observer.disconnect();
+    return () => {
+      defaultObserver.disconnect();
+      projectsObserver.disconnect();
+    };
   }, [menuItems]);
 
   // Prevent background scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
   }, [menuOpen]);
+
+  useEffect(() => {
+    const checkScreenSize = () => setIsDesktop(window.innerWidth >= 768);
+    checkScreenSize(); // Initial check
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
   return (
     <motion.header
@@ -179,34 +216,39 @@ const Navbar = () => {
               })}
 
               {/* Corner borders */}
-              {["tl", "tr", "bl", "br"].map((corner) => {
-                const offsetX = corner.includes("r") ? position.width - 12 : 0;
-                const offsetY = corner.includes("b") ? position.height - 12 : 0;
-                const borderClasses = {
-                  tl: "border-t-2 border-l-2",
-                  tr: "border-t-2 border-r-2",
-                  bl: "border-b-2 border-l-2",
-                  br: "border-b-2 border-r-2",
-                }[corner];
+              {isDesktop &&
+                ["tl", "tr", "bl", "br"].map((corner) => {
+                  const offsetX = corner.includes("r")
+                    ? position.width - 12
+                    : 0;
+                  const offsetY = corner.includes("b")
+                    ? position.height - 12
+                    : 0;
+                  const borderClasses = {
+                    tl: "border-t-2 border-l-2",
+                    tr: "border-t-2 border-r-2",
+                    bl: "border-b-2 border-l-2",
+                    br: "border-b-2 border-r-2",
+                  }[corner];
 
-                return (
-                  <motion.span
-                    key={corner}
-                    className={`absolute w-3 h-3 border-black pointer-events-none ${borderClasses}`}
-                    initial={{ opacity: 0 }}
-                    animate={{
-                      top: position.top + offsetY,
-                      left: position.left + offsetX,
-                      opacity: 1,
-                    }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30,
-                    }}
-                  />
-                );
-              })}
+                  return (
+                    <motion.span
+                      key={corner}
+                      className={`absolute w-3 h-3 border-black pointer-events-none ${borderClasses}`}
+                      initial={{ opacity: 0 }}
+                      animate={{
+                        top: position.top + offsetY,
+                        left: position.left + offsetX,
+                        opacity: 1,
+                      }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  );
+                })}
             </ul>
           </nav>
         </div>
@@ -220,7 +262,7 @@ const Navbar = () => {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-[64px] left-0 w-full bg-white z-40 overflow-hidden shadow-md rounded-b-xl"
+            className="fixed top-[64px] left-0 w-full bg-white z-40 overflow-hidden shadow-md rounded-b-xl md:hidden"
           >
             <ul className="flex flex-col items-center gap-6 py-6 text-lg">
               {menuItems.map((label) => {

@@ -30,40 +30,56 @@ const Projects = () => {
 
     if (!container || !scrollContent) return;
 
-    const isMobileOrTablet = window.innerWidth <= 1024;
+    let interval: NodeJS.Timeout | null = null;
 
-    if (isMobileOrTablet) {
-      // AUTO SCROLL FOR MOBILE/TABLET
-      let scrollPos = 0;
-      const scrollStep = 1; // adjust speed
-      const maxScroll = scrollContent.scrollWidth - window.innerWidth;
+    const handleScroll = () => {
+      const scrollTop = window.scrollY - container.offsetTop;
+      const scrollDistance = scrollContent.scrollWidth - window.innerWidth;
+      if (scrollTop >= 0 && scrollTop <= scrollDistance) {
+        scrollContent.style.transform = `translateX(-${scrollTop}px)`;
+      }
+    };
 
-      const interval = setInterval(() => {
-        scrollPos += scrollStep;
-        if (scrollPos > maxScroll) scrollPos = 0;
-        scrollContent.style.transform = `translateX(-${scrollPos}px)`;
-      }, 16); // roughly 60fps
+    const setupScroll = () => {
+      const isMobileOrTablet = window.innerWidth <= 1024;
 
-      return () => clearInterval(interval);
-    } else {
-      // DESKTOP: STICKY SCROLL BEHAVIOR
-      const totalScrollWidth = scrollContent.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const scrollDistance = totalScrollWidth - viewportWidth;
+      // Clear existing interval and listeners
+      if (interval) clearInterval(interval);
+      window.removeEventListener("scroll", handleScroll);
 
-      const containerHeight = scrollDistance + window.innerHeight;
-      container.style.height = `${containerHeight}px`;
+      scrollContent.style.transform = `translateX(0px)`;
 
-      const handleScroll = () => {
-        const scrollTop = window.scrollY - container.offsetTop;
-        if (scrollTop >= 0 && scrollTop <= scrollDistance) {
-          scrollContent.style.transform = `translateX(-${scrollTop}px)`;
-        }
-      };
+      if (isMobileOrTablet) {
+        let scrollPos = 0;
+        const scrollStep = 1;
+        const maxScroll = scrollContent.scrollWidth - window.innerWidth;
+        container.style.height = "auto";
+        interval = setInterval(() => {
+          scrollPos += scrollStep;
+          if (scrollPos > maxScroll) scrollPos = 0;
+          scrollContent.style.transform = `translateX(-${scrollPos}px)`;
+        }, 16);
+      } else {
+        const totalScrollWidth = scrollContent.scrollWidth;
+        const viewportWidth = window.innerWidth;
+        const scrollDistance = totalScrollWidth - viewportWidth;
 
-      window.addEventListener("scroll", handleScroll);
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
+        const containerHeight = scrollDistance + window.innerHeight;
+        container.style.height = `${containerHeight}px`;
+
+        window.addEventListener("scroll", handleScroll);
+      }
+    };
+
+    setupScroll();
+
+    window.addEventListener("resize", setupScroll);
+
+    return () => {
+      if (interval) clearInterval(interval);
+      window.removeEventListener("resize", setupScroll);
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
@@ -79,11 +95,9 @@ const Projects = () => {
       </div>
 
       <div ref={containerRef} className="relative w-screen">
-        <div className="md:sticky top-0 min-h-screen overflow-x-hidden flex flex-col justify-center">
-          {/* Title and Description */}
+        <div className="md:sticky top-0 overflow-x-hidden flex flex-col justify-center">
           <div className="text-center px-10 mt-10">
             <div className="w-fit my-4 mx-auto sm:mx-0 flex items-center justify-center sm:relative">
-              {/* Badge (normal flow on mobile, absolute on sm and up) */}
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-amber-400 flex justify-center items-center sm:absolute sm:top-2 sm:-right-9 z-0 mr-2 sm:mr-0">
                 <p className="text-xs font-medium text-white">01</p>
               </div>
@@ -100,7 +114,6 @@ const Projects = () => {
             </p>
           </div>
 
-          {/* Horizontally Scrolling Images */}
           <div className="flex items-center">
             <div
               ref={scrollContentRef}

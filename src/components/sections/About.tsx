@@ -19,14 +19,14 @@ const About = () => {
     <div
       id="about"
       ref={ref}
-      className="p-6 md:p-12 min-h-screen flex flex-col items-center"
+      className="p-6 md:p-12 flex flex-col items-center"
       role="region"
       aria-labelledby="about-heading"
     >
       <h2 id="about-heading" className="sr-only">
         About Section
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-4 gap-4 flex-grow max-w-5xl md:max-h-[800px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-4 gap-4 flex-grow max-w-5xl">
         {/* Hero Text */}
         <motion.div
           className="col-span-1 sm:col-span-2 lg:col-span-4 lg:row-span-2 rounded-4xl p-6 flex flex-col justify-between"

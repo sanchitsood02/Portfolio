@@ -18,12 +18,21 @@ export const metadata = {
     siteName: "Mohammed Abdullah Khan Portfolio",
     type: "website",
     locale: "en_US",
+    images: [
+    {
+      url: "https://www.mohammedabdullahkhan.com/og-image.png",
+      width: 1200,
+      height: 630,
+      alt: "Mohammed Abdullah Khan Developer Portfolio",
+    },
+  ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Mohammed Abdullah Khan | Developer Portfolio",
     description: "Explore the developer portfolio of Mohammed Abdullah Khan, a passionate full-stack and mobile app developer.",
-    creator: "@MohammedAb86610", // Optional
+    creator: "@MohammedAb86610",
+    images: ["https://www.mohammedabdullahkhan.com/og-image.png"],
   },
   robots: {
     index: true,
@@ -45,6 +54,7 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
+        <title>Mohammed Abdullah Khan | Full Stack & React Native Developer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="F-3BijcciQLBcKa0qGz_zjFwsVwM_4D-_KDKrjBrdGE" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-S3MLK25EVM" />

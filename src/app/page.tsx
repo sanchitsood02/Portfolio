@@ -20,7 +20,7 @@ export default function Home() {
     <>
       <DeviceNotice />
       <motion.div
-        className="font-body min-h-screen transition-colors duration-500"
+        className="font-body transition-colors duration-500"
         style={{
           backgroundColor: isContactInView ? "#0F0F0F" : "#FFFFFF",
         }}

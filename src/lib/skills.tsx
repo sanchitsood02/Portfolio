@@ -106,7 +106,7 @@ const skillsData: SkillsData = {
       },
       {
         name: "TypeScript",
-        desc: "Actively used in React Native codebases for type safety and bug prevention.",
+        desc: "Use TypeScript regularly in both my professional React Native work and personal projects to maintain type safety and catch bugs early.",
         badge: "MODERN STACK",
         icon: <SiTypescript className="text-blue-500" />,
       },
@@ -121,7 +121,7 @@ const skillsData: SkillsData = {
       },
       {
         name: "Next.js",
-        desc: "Used for building SEO-optimized, server-rendered apps.",
+        desc: "Built my portfolio using it to ensure good SEO and fast load times.",
         badge: "FULLSTACK",
         icon: <SiNextdotjs className="text-black text-4xl" />,
         banner: "from-neutral-800 via-gray-900 to-black",
@@ -295,7 +295,7 @@ const skillsData: SkillsData = {
     skills: [
       {
         name: "React Native",
-        desc: "Built cross-platform mobile components with animations, charts, and Firebase integration in my professional work.",
+        desc: "Built animated, cross-platform mobile components with charts and Firebase in work and personal projects",
         badge: "MOBILE DEV",
         icon: <FaReact className="text-cyan-400" />,
       },
@@ -335,7 +335,7 @@ const skillsData: SkillsData = {
     skills: [
       {
         name: "React Native",
-        desc: "Built cross-platform mobile components with animations, charts, and Firebase integration in my professional work.",
+        desc: "Built animated, cross-platform mobile components with charts and Firebase in work and personal projects",
         badge: "MOBILE DEV",
         icon: <FaReact className="text-cyan-400" />,
       },
@@ -358,8 +358,14 @@ const skillsData: SkillsData = {
         icon: <FaReact className="text-cyan-400" />,
       },
       {
+        name: "Next.js",
+        desc: "Built my portfolio using it to ensure good SEO and fast load times.",
+        badge: "FULLSTACK",
+        icon: <SiNextdotjs className="text-black text-4xl" />,
+      },
+      {
         name: "TypeScript",
-        desc: "Used in React Native and web projects for better type safety and maintainability.",
+        desc: "Use TypeScript regularly in both my professional React Native work and personal projects to maintain type safety and catch bugs early.",
         badge: "MODERN STACK",
         icon: <SiTypescript className="text-blue-500" />,
       },
