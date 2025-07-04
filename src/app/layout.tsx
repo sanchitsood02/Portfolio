@@ -47,6 +47,17 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="F-3BijcciQLBcKa0qGz_zjFwsVwM_4D-_KDKrjBrdGE" />
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-S3MLK25EVM" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-S3MLK25EVM');
+            `,
+          }}
+        />
       </head>
       <body className="font-inter">{children}</body>
     </html>
