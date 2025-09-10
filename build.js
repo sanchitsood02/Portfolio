@@ -1,16 +1,20 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const { copySync, ensureDirSync } = require('fs-extra');
 
 // Create the out directory if it doesn't exist
-if (!fs.existsSync('out')) {
-  fs.mkdirSync('out');
-}
+ensureDirSync('out');
 
-// Copy public directory to out
+// Copy public directory to out using cross-platform method
 if (fs.existsSync('public')) {
-  execSync('xcopy public out /E /I /H /Y');
-  console.log('Copied public directory to out');
+  try {
+    // Use fs-extra's copySync for cross-platform copying
+    copySync('public', 'out', { overwrite: true });
+    console.log('Copied public directory to out');
+  } catch (err) {
+    console.error('Error copying public directory:', err);
+  }
 }
 
 // Create a simple index.html in the out directory
