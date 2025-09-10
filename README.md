@@ -1,11 +1,11 @@
-# 🌟 My Developer Portfolio
+# 🌟 Sanchit Sood's Portfolio
 
 Hi there! 👋  
-This is my personal portfolio where I showcase some of the projects I've worked on, the skills I’ve gained, and what I’m currently exploring.
+This is my personal portfolio where I showcase some of the projects I've worked on, the skills I've gained, and what I'm currently exploring.
 
-🔗 **Check it out here:** [https://www.sanchitsood.co.uk](https://www.sanchitsood.co.uk)
+🔗 **Check it out here:** [https://sanchitsood02.github.io/Portfolio/](https://sanchitsood02.github.io/Portfolio/)
 
-Built using modern web tech with a focus on performance, accessibility, and a clean UI.
+Built using Next.js, React, Tailwind CSS, and Framer Motion with a focus on performance, accessibility, and a clean UI.
 
 ---
 
