@@ -3,14 +3,11 @@
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaMedium } from "react-icons/fa";
-import { SiLeetcode } from "react-icons/si";
 
 export default function StatsSection() {
-  const [leetcodeCount, setLeetcodeCount] = useState(0);
   const [blogsCount, setBlogsCount] = useState(0);
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  const leetIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const blogIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const animateCount = (
@@ -37,37 +34,15 @@ export default function StatsSection() {
   useEffect(() => {
     if (hasAnimated) return;
 
-    fetch("https://leetcode-stats-api.herokuapp.com/Mak3")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "success") {
-          animateCount(data.totalSolved, setLeetcodeCount, leetIntervalRef);
-        } else {
-          animateCount(572, setLeetcodeCount, leetIntervalRef);
-        }
-        setHasAnimated(true);
-      })
-      .catch(() => {
-        animateCount(572, setLeetcodeCount, leetIntervalRef);
-        setHasAnimated(true);
-      });
-
     animateCount(2, setBlogsCount, blogIntervalRef);
+    setHasAnimated(true);
 
     return () => {
-      if (leetIntervalRef.current) clearInterval(leetIntervalRef.current);
       if (blogIntervalRef.current) clearInterval(blogIntervalRef.current);
     };
   }, []);
 
   const stats = [
-    {
-      label: "DSA Problems Solved",
-      value: leetcodeCount,
-      link: "https://leetcode.com/Mak3/",
-      icon: <SiLeetcode className="w-4 h-4"/>,
-      tooltip: "Leetcode →",
-    },
     {
       label: "Blogs Written",
       value: blogsCount,

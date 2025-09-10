@@ -1,0 +1,111 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="300" rx="10" fill="#2C2C2C"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="500" height="40" rx="10 10 0 0" fill="#333333"/>
+  <text x="20" y="25" font-family="Arial" font-size="14" font-weight="bold" fill="white">IMS for SCMS</text>
+  <text x="20" y="35" font-family="Arial" font-size="8" fill="#BBBBBB">ver 1.0</text>
+  <text x="380" y="25" font-family="Arial" font-size="8" fill="#BBBBBB">Last updated: 08-05-2023 00:00:20</text>
+  
+  <!-- Sidebar -->
+  <rect x="0" y="40" width="80" height="260" fill="#333333"/>
+  <text x="15" y="65" font-family="Arial" font-size="10" fill="white">Dashboard</text>
+  <text x="15" y="85" font-family="Arial" font-size="10" fill="#4ECDC4">Service</text>
+  <text x="15" y="105" font-family="Arial" font-size="10" fill="#BBBBBB">Operation</text>
+  <text x="15" y="125" font-family="Arial" font-size="10" fill="#BBBBBB">Certificates</text>
+  <text x="15" y="145" font-family="Arial" font-size="10" fill="#BBBBBB">Vehicles</text>
+  <text x="15" y="165" font-family="Arial" font-size="10" fill="#BBBBBB">Devices</text>
+  <text x="15" y="185" font-family="Arial" font-size="10" fill="#BBBBBB">Policy Generator</text>
+  <text x="15" y="205" font-family="Arial" font-size="10" fill="#BBBBBB">Logs</text>
+  <text x="15" y="225" font-family="Arial" font-size="10" fill="#BBBBBB">Settings</text>
+  <text x="15" y="265" font-family="Arial" font-size="10" fill="#BBBBBB">Customer Service</text>
+  <text x="15" y="285" font-family="Arial" font-size="10" fill="#BBBBBB">Region: North America</text>
+  
+  <!-- Main Content -->
+  <!-- Total Devices Counter -->
+  <text x="95" y="65" font-family="Arial" font-size="12" fill="#BBBBBB">Total devices</text>
+  <text x="95" y="85" font-family="Arial" font-size="20" font-weight="bold" fill="white">6,131,988</text>
+  
+  <!-- Device Status Breakdown -->
+  <rect x="95" y="95" width="30" height="8" fill="#4ECDC4"/>
+  <text x="130" y="102" font-family="Arial" font-size="8" fill="white">Active</text>
+  <text x="170" y="102" font-family="Arial" font-size="8" fill="white">3,018,954</text>
+  <text x="220" y="102" font-family="Arial" font-size="8" fill="#BBBBBB">49.2%</text>
+  
+  <rect x="95" y="108" width="30" height="8" fill="#FF6B6B"/>
+  <text x="130" y="115" font-family="Arial" font-size="8" fill="white">Needs attention</text>
+  <text x="170" y="115" font-family="Arial" font-size="8" fill="white">1,840,027</text>
+  <text x="220" y="115" font-family="Arial" font-size="8" fill="#BBBBBB">30.0%</text>
+  
+  <rect x="95" y="121" width="30" height="8" fill="#BBBBBB"/>
+  <text x="130" y="128" font-family="Arial" font-size="8" fill="white">Offline</text>
+  <text x="170" y="128" font-family="Arial" font-size="8" fill="white">1,273,007</text>
+  <text x="220" y="128" font-family="Arial" font-size="8" fill="#BBBBBB">20.8%</text>
+  
+  <!-- World Map -->
+  <rect x="95" y="140" width="390" height="100" rx="5" fill="#3A3A3A" opacity="0.3"/>
+  <path d="M250,190 C280,175 310,180 340,190 C370,200 400,195 430,185" stroke="#4ECDC4" stroke-width="1" fill="none"/>
+  <path d="M120,190 C150,195 180,185 210,190 C240,195 270,190 300,185" stroke="#4ECDC4" stroke-width="1" fill="none"/>
+  
+  <!-- Map Regions -->
+  <rect x="120" y="160" width="30" height="15" rx="3" fill="#222222"/>
+  <text x="125" y="170" font-family="Arial" font-size="8" fill="white">China</text>
+  
+  <rect x="270" y="165" width="60" height="15" rx="3" fill="#4ECDC4"/>
+  <text x="275" y="175" font-family="Arial" font-size="8" fill="white">North America</text>
+  
+  <rect x="410" y="160" width="30" height="15" rx="3" fill="#222222"/>
+  <text x="415" y="170" font-family="Arial" font-size="8" fill="white">Europe</text>
+  
+  <!-- Events Section -->
+  <text x="100" y="255" font-family="Arial" font-size="12" font-weight="bold" fill="white">Events</text>
+  <rect x="95" y="260" width="180" height="35" rx="5" fill="#3A3A3A"/>
+  
+  <!-- Events Table Headers -->
+  <text x="100" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Time</text>
+  <text x="130" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Status</text>
+  <text x="160" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">System</text>
+  <text x="190" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Event</text>
+  
+  <!-- Events Table Rows -->
+  <text x="100" y="285" font-family="Arial" font-size="7" fill="white">09:23:45</text>
+  <rect x="130" y="280" width="8" height="8" rx="4" fill="#FF6B6B"/>
+  <text x="160" y="285" font-family="Arial" font-size="7" fill="white">PKI</text>
+  <text x="190" y="285" font-family="Arial" font-size="7" fill="white">PKI-123: 500 certificates issued</text>
+  
+  <!-- Job Trends Section -->
+  <text x="300" y="255" font-family="Arial" font-size="12" font-weight="bold" fill="white">Job Trends</text>
+  
+  <!-- Job Trends Charts -->
+  <rect x="290" y="260" width="195" height="35" rx="5" fill="#3A3A3A"/>
+  
+  <!-- Chart Headers -->
+  <text x="300" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Day</text>
+  <text x="325" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Week</text>
+  <text x="350" y="270" font-family="Arial" font-size="8" fill="white">Month</text>
+  <text x="380" y="270" font-family="Arial" font-size="8" fill="#BBBBBB">Year</text>
+  
+  <!-- Chart Data -->
+  <text x="300" y="285" font-family="Arial" font-size="7" fill="white">Issued: 345,000</text>
+  <text x="380" y="285" font-family="Arial" font-size="7" fill="white">Revoked: 9,701</text>
+  
+  <!-- Chart Bars -->
+  <!-- First Chart -->
+  <rect x="300" y="290" width="3" height="5" fill="#4ECDC4"/>
+  <rect x="305" y="288" width="3" height="7" fill="#4ECDC4"/>
+  <rect x="310" y="286" width="3" height="9" fill="#4ECDC4"/>
+  <rect x="315" y="284" width="3" height="11" fill="#4ECDC4"/>
+  <rect x="320" y="286" width="3" height="9" fill="#4ECDC4"/>
+  <rect x="325" y="288" width="3" height="7" fill="#4ECDC4"/>
+  <rect x="330" y="286" width="3" height="9" fill="#4ECDC4"/>
+  
+  <!-- Second Chart -->
+  <rect x="380" y="290" width="3" height="5" fill="#FF6B6B"/>
+  <rect x="385" y="288" width="3" height="7" fill="#FF6B6B"/>
+  <rect x="390" y="286" width="3" height="9" fill="#FF6B6B"/>
+  <rect x="395" y="284" width="3" height="11" fill="#FF6B6B"/>
+  <rect x="400" y="286" width="3" height="9" fill="#FF6B6B"/>
+  <rect x="405" y="288" width="3" height="7" fill="#FF6B6B"/>
+  <rect x="410" y="286" width="3" height="9" fill="#FF6B6B"/>
+</svg>

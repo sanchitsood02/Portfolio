@@ -46,7 +46,7 @@ const About = () => {
               className="relative break-words whitespace-normal leading-tight"
             >
               <VariableProximity
-                label={"Focused on function. \nDriven by design."}
+                label={"Focused on outcomes\nDriven by engineering"}
                 className="variable-proximity-demo text-3xl md:text-6xl break-words whitespace-pre-line leading-tight cursor-default"
                 fromFontVariationSettings="'wght' 400, 'opsz' 30"
                 toFontVariationSettings="'wght' 1000, 'opsz' 80"
@@ -54,24 +54,23 @@ const About = () => {
                 radius={100}
                 falloff="linear"
               />
-              <div
-                className="p-2 bg-amber-300 rounded-4xl absolute right-10 top-14 -rotate-35 hidden md:block"
-                aria-hidden="true"
-              >
-                <p>Hover me</p>
-              </div>
+            </div>
+            <div
+              className="px-2 py-1 bg-amber-300 rounded-4xl inline-block -rotate-12 hidden md:inline-block shadow-md transform hover:scale-110 transition-transform duration-300 z-10 mb-4 mt-2"
+              aria-hidden="true"
+            >
+              <p className="font-medium text-sm m-0">Hover me</p>
             </div>
             <p className="text-lg mt-4 max-w-2xl" id="hero-title" tabIndex={0}>
-              I design and develop meaningful digital experiences that blend
-              creativity with functionality.
+              I build reliable, data-driven software that turns messy workflows into simple, high-performing products—across web apps, analytics, and factory-floor AI. Comfortable working in Agile teams, following SDLC, writing clean, well-documented code, and shipping fast without breaking things.
             </p>
           </div>
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="mt-6 font-bold text-lg flex items-center gap-2"
-            aria-label="Location: Hyderabad, India"
+            className="mt-0 font-bold text-lg flex items-center gap-2"
+            aria-label="Location: Bristol, United Kingdom"
           >
             <motion.span
               animate={{ scale: [1, 1.1, 1] }}
@@ -80,7 +79,7 @@ const About = () => {
             >
               <MdLocationOn size={20} />
             </motion.span>
-            <span>Hyderabad, India</span>
+            <span>📍 Bristol, United Kingdom</span>
           </motion.div>
         </motion.div>
 
@@ -104,6 +103,11 @@ const About = () => {
             >
               🧠 Free Time Highlights
             </h3>
+            <div className="text-sm leading-relaxed mt-2">
+              <p className="mb-2">Open-source & hacks: small PRs, weekend prototypes, campus hackathons</p>
+              <p className="mb-2">Problem-solving reps: LeetCode/Codeforces practice (algorithms, debugging)</p>
+              <p className="mb-2">Certs & learning: cloud + AI fundamentals, version control, unit testing</p>
+            </div>
             <StatsSection />
           </div>
         </motion.div>
@@ -130,19 +134,22 @@ const About = () => {
           <ul className="space-y-4 text-sm">
             {[
               {
-                role: "Development Engineer",
-                company: "Wavemaker",
-                duration: "Apr 2025 – Present",
+                role: "Software Engineer Intern",
+                company: "VeeGee Kaushiko",
+                duration: "2025",
+                description: "Built meeting-intelligence and PLC-log analysis prototypes; debugged production issues, wrote documentation, and iterated features in sprints."
               },
               {
-                role: "Associate Software Engineer",
-                company: "Wavemaker",
-                duration: "May 2023 – Mar 2025",
+                role: "Founder/Advisor",
+                company: "The Manga Store",
+                duration: "2021–2025",
+                description: "Scaled an e-commerce brand; automated fulfilment analytics, returns/exchange flows, and CRM via APIs; practiced requirements gathering with non-tech stakeholders."
               },
               {
-                role: "Development Intern",
-                company: "Wavemaker",
-                duration: "Jan 2023 – May 2023",
+                role: "Junior Web Developer",
+                company: "Arteno Creations",
+                duration: "2021",
+                description: "Shipped a React-based 3D configurator; added tests, improved load times, and learned code reviews and Git workflows."
               },
             ].map((exp, idx) => (
               <li key={idx} className="bg-white/20 p-3 rounded-xl">
@@ -150,6 +157,7 @@ const About = () => {
                 <p className="text-xs mt-1 opacity-90">
                   {exp.company} · {exp.duration}
                 </p>
+                <p className="text-xs mt-1">{exp.description}</p>
               </li>
             ))}
           </ul>
@@ -172,8 +180,8 @@ const About = () => {
             <h3 className="font-bold text-2xl mb-4" id="education-heading">
               🎓 Education
             </h3>
-            <p className="text-sm mt-2">B.Tech in Computer Science</p>
-            <p className="text-sm">2019 – 2023</p>
+            <p className="text-sm mt-2">🎓 B.Sc. (Hons) IT Management for Business — UWE Bristol (2023–2026)</p>
+            <p className="text-sm">Relevant modules: Algorithms & Data Structures, Databases, Web Engineering, Analytics & Visualization, Project Management.</p>
           </div>
           <div className="absolute right-0 top-0" aria-hidden="true">
             <div className="w-32 md:w-40">
@@ -200,8 +208,16 @@ const About = () => {
               💼 What I Do
             </h3>
             <p className="text-sm mb-2">
-              Specialized in building responsive mobile & web interfaces using
-              React Native, React.js, and modern JS frameworks.
+              Software Development (Frontend/Backend): React/Next.js, Node/Python; REST APIs; component systems; accessibility.
+            </p>
+            <p className="text-sm mb-2">
+              Data & ML foundations: Python (Pandas/NumPy), SQL, exploratory analysis; simple models and dashboards.
+            </p>
+            <p className="text-sm mb-2">
+              Dev practices: Git, unit testing, linting, CI basics, documentation, code reviews, issue tracking.
+            </p>
+            <p className="text-sm mb-2">
+              Ways of working: Agile/Scrum, sprint planning, stand-ups, tickets, writing clear requirements/acceptance criteria.
             </p>
             <div className="w-[80%] m-auto my-2" aria-hidden="true">
               <Lottie animationData={skillsAnimation} />
@@ -227,16 +243,13 @@ const About = () => {
           </h3>
           <ol className="list-decimal list-inside text-sm leading-relaxed">
             <li>
-              <span className="font-bold">Travel</span> lover exploring new
-              places
+              Fitness & routine—keeps the mind sharp.
             </li>
             <li>
-              Enjoy <span className="font-bold">cooking</span> and trying new
-              recipes
+              Builder at heart—turn ideas into revenue and learn fast from users.
             </li>
             <li>
-              Read <span className="font-bold">finance</span> books & investing
-              guides
+              Community—mentor/volunteer for youth coding where possible.
             </li>
           </ol>
         </motion.div>
@@ -257,7 +270,18 @@ const About = () => {
           <h3 className="text-2xl" id="learning-heading">
             📚 Currently Learning
           </h3>
-          <AnimatedSearchBar />
+          <p className="text-sm mb-2">
+            MLOps basics (experiments, data/versioning)
+          </p>
+          <p className="text-sm mb-2">
+            C++ & systems refresh for performance work
+          </p>
+          <p className="text-sm mb-2">
+            Next.js (RSC) & server actions for production apps
+          </p>
+          <p className="text-sm mb-2">
+            AWS patterns and cost-aware hosting
+          </p>
         </motion.div>
       </div>
     </div>

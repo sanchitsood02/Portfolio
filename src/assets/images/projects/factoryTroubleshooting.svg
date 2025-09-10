@@ -1,0 +1,50 @@
+<svg width="500" height="300" viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="500" height="300" rx="10" fill="#F5F5F5"/>
+  
+  <!-- Main Content Container -->
+  <rect x="10" y="10" width="480" height="280" rx="8" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  
+  <!-- Left Side - Estimated Time Section -->
+  <text x="25" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="#333333">Estimated time to complete fix</text>
+  <text x="25" y="55" font-family="Arial" font-size="20" font-weight="bold" fill="#4285F4">5-10 mins</text>
+  <text x="25" y="75" font-family="Arial" font-size="12" fill="#666666">Based on historical data</text>
+  
+  <!-- Right Side - Causes Ranked Section -->
+  <text x="300" y="35" font-family="Arial" font-size="14" font-weight="bold" fill="#333333">Potential Causes</text>
+  <text x="300" y="55" font-family="Arial" font-size="12" fill="#666666">Ranked by likelihood of success</text>
+  
+  <!-- Right Side - Real Time Progress Section -->
+  <text x="300" y="85" font-family="Arial" font-size="12" fill="#666666">Real time progress</text>
+  <rect x="300" y="95" width="180" height="8" rx="4" fill="#E0E0E0"/>
+  <rect x="300" y="95" width="72" height="8" rx="4" fill="#4285F4"/>
+  <text x="300" y="115" font-family="Arial" font-size="12" fill="#666666">40% complete</text>
+  
+  <!-- Card Container -->
+  <rect x="25" y="95" width="450" height="190" rx="8" fill="#FAFAFA"/>
+  <text x="40" y="120" font-family="Arial" font-size="14" font-weight="bold" fill="#333333">Potential Causes</text>
+  
+  <!-- Card 1 -->
+  <rect x="40" y="130" width="430" height="70" rx="6" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="55" y="150" font-family="Arial" font-size="13" font-weight="bold" fill="#333333">Partially Clogged Flavor Nozzle</text>
+  <text x="55" y="170" font-family="Arial" font-size="11" fill="#666666">Residue buildup or incomplete cleaning may be restricting flow intermittently.</text>
+  <text x="55" y="190" font-family="Arial" font-size="11" fill="#666666">Est. 5-10 Mins</text>
+  
+  <!-- Card 1 - Right Side -->
+  <text x="350" y="150" font-family="Arial" font-size="13" font-weight="bold" fill="#4285F4">40%</text>
+  <text x="350" y="170" font-family="Arial" font-size="11" fill="#4CAF50">Authorized</text>
+  <rect x="350" y="180" width="100" height="6" rx="3" fill="#E0E0E0"/>
+  <rect x="350" y="180" width="40" height="6" rx="3" fill="#4285F4"/>
+  
+  <!-- Card 2 -->
+  <rect x="40" y="210" width="430" height="70" rx="6" fill="white" stroke="#E0E0E0" stroke-width="1"/>
+  <text x="55" y="230" font-family="Arial" font-size="13" font-weight="bold" fill="#333333">Air Bubbles in Flavor Supply Line</text>
+  <text x="55" y="250" font-family="Arial" font-size="11" fill="#666666">Entrapped air could be disrupting the dosing consistency and pressure.</text>
+  <text x="55" y="270" font-family="Arial" font-size="11" fill="#666666">Est. 5-10 Mins</text>
+  
+  <!-- Card 2 - Right Side -->
+  <text x="350" y="230" font-family="Arial" font-size="13" font-weight="bold" fill="#FB8C00">25%</text>
+  <text x="350" y="250" font-family="Arial" font-size="11" fill="#4CAF50">Authorized</text>
+  <rect x="350" y="260" width="100" height="6" rx="3" fill="#E0E0E0"/>
+  <rect x="350" y="260" width="25" height="6" rx="3" fill="#FB8C00"/>
+</svg>

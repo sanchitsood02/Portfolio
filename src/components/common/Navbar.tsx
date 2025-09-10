@@ -157,7 +157,7 @@ const Navbar = () => {
             alt="user profile image"
             className="w-8 h-8 rounded-full"
           />
-          <p className="text-black font-medium">Abdullah Khan</p>
+          <p className="text-black font-medium">Sanchit Sood</p>
         </div>
 
         {/* Hamburger Icon - mobile only */}

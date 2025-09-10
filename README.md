@@ -3,7 +3,7 @@
 Hi there! 👋  
 This is my personal portfolio where I showcase some of the projects I've worked on, the skills I’ve gained, and what I’m currently exploring.
 
-🔗 **Check it out here:** [https://www.mohammedabdullahkhan.com](https://www.mohammedabdullahkhan.com)
+🔗 **Check it out here:** [https://www.sanchitsood.co.uk](https://www.sanchitsood.co.uk)
 
 Built using modern web tech with a focus on performance, accessibility, and a clean UI.
 

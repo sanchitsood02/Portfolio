@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
 
-const RotatingText = ({ text = "✦ EXPLORE ✦ FURTHER ", radius = 35 }) => {
+const RotatingText = ({ text = "✦ PYTHON ✦ DATA SCIENCE ✦ AI ✦ ML ✦", radius = 35 }) => {
   const characters = text.split("");
   const charCount = characters.length;
   const angleStep = 360 / charCount;

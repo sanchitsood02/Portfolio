@@ -7,31 +7,31 @@ import { HiOutlineMail } from "react-icons/hi";
 const navItems = [
   {
     icon: <HiOutlineMail size={22} />,
-    label: "Gmail",
+    label: "Email",
     color: "text-red-400",
     bg: "bg-black",
-    link: "mailto:mohammedabdullahkhan26523@gmail.com",
+    link: "mailto:sanchitsood@gmail.com",
   },
   {
     icon: <FaLinkedinIn size={22} />,
     label: "LinkedIn",
     color: "text-blue-500",
     bg: "bg-white",
-    link: "https://www.linkedin.com/in/mohammed-abdullah-khan-7b82a31a5/",
+    link: "https://www.linkedin.com/in/sanchit-sood-7b32601b7/",
   },
   {
     icon: <FaGithub size={22} />,
     label: "GitHub",
     color: "text-white",
     bg: "bg-gray-800",
-    link: "https://github.com/Mak-3",
+    link: "https://github.com/sanchitsood02",
   },
   {
     icon: <FaInstagram size={22} />,
     label: "Instagram",
     color: "text-pink-500",
     bg: "bg-white",
-    link: "https://www.instagram.com/amour_infinito/",
+    link: "https://www.instagram.com/sanchitsoodd_/?hl=en",
   },
 ];
 

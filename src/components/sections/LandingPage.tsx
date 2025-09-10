@@ -5,7 +5,7 @@ import React, { useRef } from "react";
 import Eye from "../animations/Eye";
 import Image from "next/image";
 import myPic from "../../assets/images/MyPic.png";
-import charminar from "../../assets/images/Charminar.jpg";
+import uwe from "../../assets/images/UWE_Bristol_logo.svg.png";
 import Lottie from "lottie-react";
 import wavingHand from "../../assets/animations/handWave.json";
 import { colors } from "@/src/lib/colors";
@@ -135,18 +135,19 @@ const LandingPage = () => {
                   <span className="w-10 h-10 md:w-12 md:h-12">
                     <Lottie animationData={wavingHand} loop={true} />
                   </span>
-                  <span>I&apos;m</span>
+                  <span>Hi, I&apos;m</span>
                 </span>
 
                 <span className="flex flex-row md:flex-row items-center gap-2">
                   <span className="relative group">
                     <Image
                       src={myPic}
-                      alt="Abdullah Khan Picture"
+                      alt="Sanchit Sood Picture"
                       sizes="(max-width: 768px) 40px, 60px"
                       className="rounded-full shadow-lg group-hover:cursor-pointer w-[35px] h-[25px] md:w-[80px] md:h-[60px]"
                       placeholder="blur"
                     />
+                    {/* Note: Replace with Sanchit's profile picture when available */}
                     {/* Tooltip */}
                     <div className="absolute top-8 left-full ml-2 bg-blue-600 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition duration-300 flex">
                       <span role="img" aria-label="me">
@@ -160,17 +161,16 @@ const LandingPage = () => {
                     className="font-heading"
                     style={{ color: colors.blue.light }}
                   >
-                    Abdullah Khan
+                    Sanchit Sood
                   </span>
                 </span>
               </span>
 
-              {/* Software Engineer line */}
+              {/* Data Science Student line */}
               <span className="mt-4 block">
                 a{" "}
                 <span>
-                  c<Eye />
-                  <Eye />l
+                  c<Eye /><Eye />l
                 </span>{" "}
                 <span
                   className="font-heading"
@@ -187,22 +187,22 @@ const LandingPage = () => {
                   className="font-heading"
                   style={{ color: colors.orange.light }}
                 >
-                  India
+                  Bristol, UK
                 </span>
                 <span className="inline-block ml-2 relative group">
                   <Image
-                    src={charminar}
-                    alt="Charminar, Hyderabad"
+                    src={uwe}
+                    alt="UWE Bristol"
                     sizes="(max-width: 768px) 40px, 60px"
-                    className="rounded-full shadow-lg group-hover:cursor-pointer w-[25px] h-[35px] md:w-[60px] md:h-[70px]"
+                    className="rounded-lg shadow-lg group-hover:cursor-pointer w-[35px] h-[25px] md:w-[80px] md:h-[40px]"
                     placeholder="blur"
                   />
                   {/* Tooltip */}
                   <div className="absolute top-8 left-full ml-2 bg-blue-600 text-white px-2 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition duration-300 flex">
-                    <span role="img" aria-label="charminar">
-                      📍
+                    <span role="img" aria-label="university">
+                      🎓
                     </span>{" "}
-                    Charminar, Hyderabad
+                    University of the West of England
                   </div>
                 </span>
               </span>
@@ -232,6 +232,8 @@ const LandingPage = () => {
           >
             Download Resume
           </motion.a>
+          
+
           <div
             className="md:absolute left-10 bottom-10 mt-8 md:mt-0"
             onClick={() => {

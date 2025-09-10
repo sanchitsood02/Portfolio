@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="500" viewBox="0 0 850 500">
+  <!-- Dark background -->
+  <rect width="850" height="500" fill="#1a1d21" />
+
+  <!-- Header -->
+  <rect x="0" y="0" width="850" height="60" fill="#111315" />
+  
+  <!-- VG Logo -->
+  <rect x="65" y="15" width="30" height="30" fill="#555" />
+  <text x="80" y="35" font-family="Arial" font-size="14" fill="white" text-anchor="middle">VG</text>
+  
+  <!-- Title -->
+  <text x="110" y="25" font-family="Arial" font-size="16" font-weight="bold" fill="white">VG Automotive Parts</text>
+  <text x="110" y="45" font-family="Arial" font-size="12" fill="#aaa">Huddle Scribe - Production Meeting Transcription</text>
+  
+  <!-- Dark mode toggle -->
+  <rect x="750" y="20" width="80" height="20" rx="10" fill="#333" />
+  <text x="770" y="35" font-family="Arial" font-size="10" fill="white">Offline Mode</text>
+  <circle cx="800" y="30" r="8" fill="#444" />
+  
+  <!-- Main content area -->
+  <rect x="65" y="80" width="350" height="30" rx="5" fill="#222" />
+  <text x="240" y="100" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Recent Meeting</text>
+  
+  <rect x="435" y="80" width="350" height="30" rx="5" fill="#222" />
+  <text x="610" y="100" font-family="Arial" font-size="12" fill="white" text-anchor="middle">Meeting History</text>
+  
+  <!-- Left panel -->
+  <rect x="65" y="120" width="350" height="250" rx="5" fill="#1e2124" />
+  
+  <!-- Meeting type section -->
+  <text x="90" y="145" font-family="Arial" font-size="12" fill="white">Meeting Type</text>
+  <rect x="90" y="155" width="150" height="25" rx="3" fill="#2a2e33" />
+  <text x="100" y="172" font-family="Arial" font-size="11" fill="white">Morning Stand-up</text>
+  <text x="230" y="172" font-family="Arial" font-size="11" fill="#aaa">▼</text>
+  
+  <!-- Target teams section -->
+  <text x="270" y="145" font-family="Arial" font-size="12" fill="white">Target Teams</text>
+  <rect x="270" y="155" width="80" height="20" rx="10" fill="#3b82f6" />
+  <text x="310" y="170" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Engineering</text>
+  
+  <rect x="355" y="155" width="50" height="20" rx="10" fill="#333" />
+  <text x="380" y="170" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Quality</text>
+  
+  <rect x="270" y="180" width="80" height="20" rx="10" fill="#333" />
+  <text x="310" y="195" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Logistics</text>
+  
+  <rect x="355" y="180" width="80" height="20" rx="10" fill="#333" />
+  <text x="395" y="195" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Maintenance</text>
+  
+  <!-- Audio visualization -->
+  <g transform="translate(90, 230)">
+    <!-- Audio waveform -->
+    <rect x="0" y="0" width="5" height="40" fill="url(#blueOrangeGradient)" />
+    <rect x="8" y="5" width="5" height="35" fill="url(#blueOrangeGradient)" />
+    <rect x="16" y="10" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    <rect x="24" y="0" width="5" height="40" fill="url(#blueOrangeGradient)" />
+    <rect x="32" y="15" width="5" height="25" fill="url(#blueOrangeGradient)" />
+    <rect x="40" y="5" width="5" height="35" fill="url(#blueOrangeGradient)" />
+    <rect x="48" y="0" width="5" height="40" fill="url(#blueOrangeGradient)" />
+    <rect x="56" y="10" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    <rect x="64" y="15" width="5" height="25" fill="url(#blueOrangeGradient)" />
+    <rect x="72" y="5" width="5" height="35" fill="url(#blueOrangeGradient)" />
+    <rect x="80" y="0" width="5" height="40" fill="url(#blueOrangeGradient)" />
+    <rect x="88" y="10" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    <rect x="96" y="20" width="5" height="20" fill="url(#blueOrangeGradient)" />
+    <rect x="104" y="15" width="5" height="25" fill="url(#blueOrangeGradient)" />
+    <rect x="112" y="10" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    <rect x="120" y="5" width="5" height="35" fill="url(#blueOrangeGradient)" />
+    <rect x="128" y="0" width="5" height="40" fill="url(#blueOrangeGradient)" />
+    <rect x="136" y="10" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    <rect x="144" y="20" width="5" height="20" fill="url(#blueOrangeGradient)" />
+    
+    <!-- Second waveform (smaller) -->
+    <g transform="translate(180, 10)">
+      <rect x="0" y="0" width="5" height="30" fill="url(#blueOrangeGradient)" />
+      <rect x="8" y="5" width="5" height="25" fill="url(#blueOrangeGradient)" />
+      <rect x="16" y="10" width="5" height="20" fill="url(#blueOrangeGradient)" />
+      <rect x="24" y="5" width="5" height="25" fill="url(#blueOrangeGradient)" />
+      <rect x="32" y="0" width="5" height="30" fill="url(#blueOrangeGradient)" />
+      <rect x="40" y="10" width="5" height="20" fill="url(#blueOrangeGradient)" />
+      <rect x="48" y="5" width="5" height="25" fill="url(#blueOrangeGradient)" />
+      <rect x="56" y="0" width="5" height="30" fill="url(#blueOrangeGradient)" />
+    </g>
+  </g>
+  
+  <!-- Recording controls -->
+  <g transform="translate(200, 310)">
+    <rect x="0" y="0" width="80" height="25" rx="3" fill="#111" />
+    <text x="40" y="17" font-family="Arial" font-size="14" fill="white" text-anchor="middle">00:10</text>
+    <text x="40" y="30" font-family="Arial" font-size="8" fill="#aaa" text-anchor="middle">RECORDING</text>
+    
+    <rect x="90" y="0" width="25" height="25" rx="3" fill="#e11d48" />
+    <rect x="100" y="10" width="5" height="5" fill="white" />
+  </g>
+  
+  <text x="350" y="220" font-family="Arial" font-size="10" fill="#aaa" text-anchor="end">Level 23</text>
+  
+  <!-- Right panel -->
+  <rect x="435" y="120" width="350" height="250" rx="5" fill="#1e2124" />
+  
+  <!-- Transcription method -->
+  <text x="460" y="145" font-family="Arial" font-size="12" fill="white">Transcription Method</text>
+  <text x="460" y="165" font-family="Arial" font-size="10" fill="#aaa">Using OpenAI Whisper API (Python backend)</text>
+  
+  <rect x="730" y="145" width="35" height="20" rx="3" fill="#3b82f6" />
+  <text x="747" y="160" font-family="Arial" font-size="10" fill="white" text-anchor="middle">Switch to Browser</text>
+  
+  <!-- Whisper API selection -->
+  <g transform="translate(460, 185)">
+    <rect x="0" y="0" width="15" height="15" rx="2" fill="#1e7f3c" />
+    <text x="25" y="12" font-family="Arial" font-size="12" fill="white">Whisper API (turbo)</text>
+    
+    <rect x="270" y="0" width="35" height="15" rx="3" fill="#333" />
+    <text x="287" y="12" font-family="Arial" font-size="10" fill="white" text-anchor="middle">turbo</text>
+    <text x="310" y="12" font-family="Arial" font-size="10" fill="#aaa">▼</text>
+  </g>
+  
+  <!-- Live transcript -->
+  <g transform="translate(460, 230)">
+    <text x="0" y="0" font-family="Arial" font-size="12" fill="white">🎙 Live Transcript</text>
+    <rect x="100" y="-10" width="60" height="15" rx="3" fill="#e11d48" />
+    <text x="130" y="2" font-family="Arial" font-size="8" fill="white" text-anchor="middle">Recording</text>
+    
+    <rect x="0" y="15" width="300" height="80" rx="3" fill="#111315" />
+    <text x="10" y="40" font-family="Arial" font-size="11" fill="#aaa">Transcript will appear here as you speak...</text>
+  </g>
+  
+  <!-- Stats section -->
+  <g transform="translate(65, 390)">
+    <rect x="0" y="0" width="230" height="60" rx="5" fill="#1e2124" />
+    <text x="115" y="30" font-family="Arial" font-size="24" fill="#3b82f6" text-anchor="middle">0</text>
+    <text x="115" y="50" font-family="Arial" font-size="10" fill="#aaa" text-anchor="middle">Total Meetings</text>
+    
+    <rect x="250" y="0" width="230" height="60" rx="5" fill="#1e2124" />
+    <text x="365" y="30" font-family="Arial" font-size="24" fill="#f59e0b" text-anchor="middle">0</text>
+    <text x="365" y="50" font-family="Arial" font-size="10" fill="#aaa" text-anchor="middle">Action Items</text>
+    
+    <rect x="500" y="0" width="230" height="60" rx="5" fill="#1e2124" />
+    <text x="615" y="30" font-family="Arial" font-size="24" fill="white" text-anchor="middle">100%</text>
+    <text x="615" y="50" font-family="Arial" font-size="10" fill="#aaa" text-anchor="middle">On-Premise</text>
+  </g>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="blueOrangeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#f59e0b" />
+    </linearGradient>
+  </defs>
+</svg>

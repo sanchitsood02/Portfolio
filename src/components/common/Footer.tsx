@@ -36,7 +36,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-4 text-gray-500 text-center">
-        © {currentYear} Mohammed Abdullah Khan. All rights reserved.
+        © {currentYear} Sanchit Sood. All rights reserved.
       </div>
     </motion.footer>
   );
