@@ -192,6 +192,40 @@ git push origin main
 3. You should see a message indicating your site is published
 4. Click on the provided URL to view your deployed Next.js application
 
+## Cross-Platform Build Script
+
+To ensure the build script works on both Windows and Linux environments (including GitHub Actions runners), we use `fs-extra` instead of platform-specific commands like `xcopy`:
+
+1. Install fs-extra:
+
+```bash
+npm install fs-extra --save-dev
+npm install @types/fs-extra --save-dev  # If using TypeScript
+```
+
+2. Update your build script (build.js) to use fs-extra for file operations:
+
+```javascript
+const { execSync } = require('child_process');
+const fs = require('fs-extra');  // Use fs-extra instead of fs
+const path = require('path');
+
+// Create the out directory if it doesn't exist
+if (!fs.existsSync('out')) {
+  fs.mkdirSync('out');
+}
+
+// Copy public directory to out using fs-extra's cross-platform method
+if (fs.existsSync('public')) {
+  fs.copySync('public', 'out', { overwrite: true });
+  console.log('Copied public directory to out');
+}
+
+// Rest of your build script...
+```
+
+This approach ensures your build process works consistently across different operating systems.
+
 ## Troubleshooting
 
 ### 404 Errors
