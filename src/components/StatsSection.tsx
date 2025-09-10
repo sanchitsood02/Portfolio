@@ -48,6 +48,7 @@ export default function StatsSection() {
       value: blogsCount,
       icon: <FaMedium className="w-4 h-4" />,
       tooltip: "Medium →",
+      link: "https://medium.com/@sanchitsood",
     },
   ];
 

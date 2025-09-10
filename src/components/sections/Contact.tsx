@@ -30,7 +30,7 @@ const Contact = () => {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-gray-400 mt-6 text-md sm:text-xl"
         >
-          I'm always open to discussing software engineering, data science projects, hackathon collaborations, 
+          I&apos;m always open to discussing software engineering, data science projects, hackathon collaborations, 
           or opportunities in the field of AI and machine learning. Feel free to reach out!
         </motion.p>
 
