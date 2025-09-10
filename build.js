@@ -1,5 +1,5 @@
 const { execSync } = require('child_process');
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 
 // Create the out directory if it doesn't exist
@@ -9,7 +9,7 @@ if (!fs.existsSync('out')) {
 
 // Copy public directory to out
 if (fs.existsSync('public')) {
-  execSync('xcopy public out /E /I /H /Y');
+  fs.copySync('public', 'out', { overwrite: true });
   console.log('Copied public directory to out');
 }
 
