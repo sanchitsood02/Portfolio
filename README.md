@@ -1,5 +1,7 @@
 # 🌟 Sanchit Sood's Portfolio
 
+[![Deploy Next.js site to Pages](https://github.com/sanchitsood02/Portfolio/actions/workflows/nextjs.yml/badge.svg)](https://github.com/sanchitsood02/Portfolio/actions/workflows/nextjs.yml)
+
 Hi there! 👋  
 This is my personal portfolio where I showcase some of the projects I've worked on, the skills I've gained, and what I'm currently exploring.
 
